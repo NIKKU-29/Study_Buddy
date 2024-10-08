@@ -1,0 +1,55 @@
+response = requests.get(url, headers=headers)
+print(response.json()
+
+mixin cube(id)
+  div(id=id,class='cube')
+    .container
+      .left
+      .right
+      .top
+      .bottom
+      .front
+      .back
+
+.scene
+  +cube('ground')
+  .rocks
+    - for (i = 1; i <= 5; i++)
+      +cube('rock-'+i)
+  .jedi
+    .head
+      +cube('head')
+      +cube('neck')
+      +cube('nose')
+      .eyes
+        +cube('eye-left')
+        +cube('eye-right')
+      .hair
+        +cube('hair-top')
+        +cube('hair-center')
+        +cube('hair-center-back')
+        +cube('hair-back')
+    .body
+      +cube('body')
+    .legs
+      .leg-left
+        +cube('leg-left')
+        +cube('foot-left')
+      .leg-right
+        +cube('leg-right')
+        +cube('foot-right')
+    .arms
+      .arm-left
+        +cube('arm-left')
+        .elbow-left
+          +cube('arm-left-bottom')
+          +cube('hand-left')
+      .arm-right
+        +cube('arm-right')
+        +cube('hand-right')
+        .light-saber
+          +cube('light-saber')
+          +cube('light-saber-bolster')
+          +cube('light-saber-handle')
+          +cuber ("BIND")
+      
