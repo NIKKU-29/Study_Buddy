@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiments List</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+       body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        .navbar {
+            background-color: #0B0425;
+            color: #fff;
+            padding: 15px 20px;
+        }
+
+        .navbar .brand {
+            text-decoration: none;
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .semester1 .section {
+            background-color: #1f2937;
+            padding: 4rem 2rem;
+            margin-top: 4rem;
+            position: relative;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .semester1 .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #f3f4f6;
+            font-weight: 800;
+        }
+
+        .semester1 .practicals-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .semester1 .practicals-list .card {
+            background: linear-gradient(to right, rgb(45, 45, 197),rgba(64, 201, 116, 0.678), rgb(45, 45, 197));
+            border-radius: 0.375rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #f3f4f6;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            text-align: center;
+        }
+
+        .semester1 .practicals-list .card:hover {
+            background-color: #4b5563;
+            transform: scale(1.02);
+        }
+
+        .semester1 .card-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .semester1 .theoretical-content,
+        .semester1 .code-block {
+            display: none;
+            text-align: left;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            background-color: #1e293b;
+            padding: 20px;
+            border-radius: 0.375rem;
+            margin-top: 1rem;
+        }
+
+        .semester1 .theoretical-content h3,
+        .semester1 .theoretical-content h4,
+        .semester1 .theoretical-content h5,
+        .semester1 .theoretical-content p,
+        .semester1 .theoretical-content ul {
+            text-align: left;
+            color: #f3f4f6;
+        }
+
+        .semester1 .theoretical-content h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .semester1 .theoretical-content h4 {
+            font-size: 1.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .semester1 .theoretical-content h5 {
+            font-size: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .semester1 .theoretical-content p {
+            font-size: 1.125rem;
+            margin: 0.5rem 0;
+            line-height: 1.8;
+        }
+
+        .semester1 .theoretical-content ul {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .semester1 .theoretical-content ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .semester1 .code-block {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 0.375rem;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre-wrap;
+        }
+
+        .reveal-button {
+            background-color: #0B0425;
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            font-size: 1.125rem;
+            margin-top: 1rem;
+            transition: background-color 0.3s ease;
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+
+        .reveal-button:hover {
+            background-color: rgb(47, 130, 255);
+        }
+
+        .container {
+            display: inline-block;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2rem;
+            width: 200px;
+            margin-left: auto;
+            margin-right: auto;
+
+        }
+
+        .semester1.section {
+            flex: 1;
+        }
+
+        .video-section {
+            
+            background-color: #1f2937;
+            padding: 2rem;
+            border-radius: 0.375rem;
+            text-align:left;
+        }
+        .video-section2 {
+          
+            background-color: #1f2937;
+            padding: 2rem;
+            border-radius: 0.375rem;
+            text-align:right;
+        }
+
+        .video-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #f3f4f6;
+            font-weight: 700;
+        }
+
+        .video-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .video-container iframe {
+            border-radius: 0.375rem;
+        }
+        .download-button {
+            width: 30vw;
+            display: inline-block;
+            padding: 1vh 2vh;
+            font-size: 3vh;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            margin-bottom: 3vh;
+        }
+
+        .download-button:hover {
+            background-color: #0056b3;
+        }
+
+        .INFO
+        {
+            padding: 1vh 2vh;
+            font-size: 4vh;
+            display: block;
+            margin-bottom: 2vh;
+            color: rgb(255, 255, 255);
+            align-items: center;
+            justify-content: center;
+            background-color: #0056b3;
+            border-radius: 10px;
+            max-width: 50vw;
+            max-height: 20vw;
+            margin: 4vh auto;
+        }
+
+        pre1 .output
+        {
+            display: inline-block;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="../semestershtml/semester7.html" class="brand">Back to Subjects</a>
+        </div>
+    </nav>
+
+    <!-- Experiments Section -->
+    <section class="semester1 section">
+        <h1 class="section-title">Electrical Machines — I Lab </h1>
+
+    <a href="files/sem7.pdf" download="ALL.pdf" class="download-button">Download PDF</a>
+    <div class="INFO">
+
+        Video + Theory 
+        
+    </div>
+
+        <ul class="practicals-list">
+            <li class="card">
+                <h2 class="card-title">1. To Study the Construction and Operation of Various Types of Starters Available in the Laboratory for Starting DC Motors</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent1')">Toggle Content</button>
+                <div id="theoryContent1" class="theoretical-content">
+                    <h3>Overview of DC Motor Starters</h3>
+                    <p>DC motors require a starting mechanism to limit the inrush current when starting. This is accomplished through the use of various starters, which control the current supplied to the motor at startup. Common types of starters include the series, shunt, and compound starters. The choice of starter depends on the motor’s design and its application.</p>
+            
+                    <h3>Key Concepts</h3>
+                    <p>The starters for DC motors include:
+                    <ul>
+                        <li><strong>3-point starter:</strong> Used for shunt-wound DC motors, providing protection against overloads and ensuring safe operation.</li>
+                        <li><strong>4-point starter:</strong> Commonly used for compound-wound motors, offering an additional series field control.</li>
+                        <li><strong>Pushed-start mechanism:</strong> Applied for motors with low starting current requirements.</li>
+                    </ul>
+                    These starters use various methods such as resistance, field control, and series-field winding to reduce the initial current and safely bring the motor up to speed.</p>
+            
+                    <h3>Viva Questions</h3>
+                    <h4>1. Why is a starter necessary for a DC motor?</h4>
+                    <p><strong>Answer:</strong> A starter is necessary for a DC motor to limit the high inrush current that would otherwise occur when the motor starts, preventing damage to the motor and the power supply.</p>
+            
+                    <h4>2. What is the difference between a 3-point and 4-point starter?</h4>
+                    <p><strong>Answer:</strong> A 3-point starter is used for shunt-wound DC motors and provides basic overload protection, while a 4-point starter is used for compound-wound motors and includes an additional field control mechanism for better regulation of motor speed.</p>
+            
+                    <h4>3. How does a 3-point starter work?</h4>
+                    <p><strong>Answer:</strong> A 3-point starter controls the current by including a variable resistance in series with the motor at startup, reducing the starting current. Once the motor reaches a certain speed, the resistance is gradually removed, and the motor operates at full voltage.</p>
+            
+                    <h4>4. What type of motor would benefit from a compound starter?</h4>
+                    <p><strong>Answer:</strong> A compound-wound DC motor, which has both series and shunt windings, would benefit from a compound starter for improved speed regulation under varying load conditions.</p>
+            
+                    <div id="videoBlock1" class="video-section">
+                        <h3>How Starters are Used in DC Motors</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/nyxTdL_4Q-Y" title="YouTube video player"></iframe>
+                    </div>
+            
+                 
+                </div>
+            </li>
+            
+            <li class="card">
+                <h2 class="card-title">2. To Study the Magnetization Characteristics of a Separately Excited D.C Generator at Different Speeds and to Find the Critical Field Resistance at Those Speeds</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent2')">Toggle Content</button>
+                <div id="theoryContent2" class="theoretical-content">
+                    <h3>Overview of Magnetization Characteristics</h3>
+                    <p>Magnetization characteristics of a separately excited DC generator describe the relationship between the terminal voltage and the field current. The generator’s output voltage increases with increasing field current until a saturation point is reached. The critical field resistance is the resistance that prevents the generator from building up voltage at a particular speed.</p>
+            
+                    <h3>Key Concepts</h3>
+                    <p>The magnetization curve is plotted by varying the field current and measuring the corresponding voltage at different speeds. The critical field resistance is the resistance value at which the generator will just produce a voltage. If the field resistance is higher than this value, the generator will fail to generate voltage.</p>
+            
+                    <h3>Viva Questions</h3>
+                    <h4>1. What is the magnetization curve?</h4>
+                    <p><strong>Answer:</strong> The magnetization curve shows the relationship between the field current and the terminal voltage of a separately excited DC generator. It helps determine the behavior of the generator under different field excitation conditions.</p>
+            
+                    <h4>2. How does speed affect the magnetization curve?</h4>
+                    <p><strong>Answer:</strong> As speed increases, the voltage produced by the generator increases for a given field current. The shape of the magnetization curve may also change with speed.</p>
+            
+                    <h4>3. What is critical field resistance?</h4>
+                    <p><strong>Answer:</strong> Critical field resistance is the value of the field resistance at which the generator just starts to produce a voltage. If the field resistance exceeds this value, the generator will not generate any voltage.</p>
+            
+                    <h4>4. How do you determine the critical field resistance experimentally?</h4>
+                    <p><strong>Answer:</strong> To determine the critical field resistance, increase the field resistance gradually and observe the voltage output of the generator. The resistance value at which the voltage starts to build up is the critical field resistance.</p>
+            
+                    <div id="videoBlock2" class="video-section">
+                        <h3>How to Study Magnetization Characteristics of a D.C Generator</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/nyxTdL_4Q-Y" title="YouTube video player"></iframe>
+                    </div>
+    
+                </div>
+            </li>
+            
+            <li class="card">
+                <h2 class="card-title">4. To Perform the Load Test on D.C. Shunt Motor and to Draw the Performance Characteristics</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent2')">Toggle Content</button>
+                <div id="theoryContent2" class="theoretical-content">
+                    <h3>Overview of Load Test on DC Shunt Motor</h3>
+                    <p>The load test on a DC shunt motor is performed to evaluate its performance under varying load conditions. By measuring the motor's input power (voltage and current) and output power (torque and speed), we can plot the performance characteristics, such as the speed-torque curve, efficiency, and power factor.</p>
+            
+                    <h3>Key Concepts</h3>
+                    <p>The load test involves applying different loads to the motor and recording the corresponding input and output parameters. The motor's efficiency can be calculated by comparing the input and output power at different load levels. The performance characteristics such as speed, torque, and efficiency can be plotted for analysis.</p>
+            
+                    <h3>Viva Questions</h3>
+                    <h4>1. What is the purpose of a load test on a DC motor?</h4>
+                    <p><strong>Answer:</strong> The purpose of a load test is to determine the motor's performance characteristics such as speed, torque, efficiency, and power factor under various load conditions.</p>
+            
+                    <h4>2. How do you calculate the efficiency of a DC motor during the load test?</h4>
+                    <p><strong>Answer:</strong> Efficiency is calculated by comparing the output power (mechanical power) to the input power (electrical power). Efficiency = (Output Power / Input Power) × 100.</p>
+            
+                    <h4>3. What parameters are measured during a load test on a DC shunt motor?</h4>
+                    <p><strong>Answer:</strong> The parameters measured include input voltage, input current, output speed, output torque, and power at different load levels.</p>
+            
+                    <h4>4. How do you determine the performance characteristics from a load test?</h4>
+                    <p><strong>Answer:</strong> By plotting the motor’s speed, torque, and efficiency against the load, we can obtain its performance characteristics, which help in understanding the motor’s behavior under varying operating conditions.</p>
+            
+                    <div id="videoBlock2" class="video-section">
+                        <h3>How to Perform a Load Test on a DC Shunt Motor</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/nyxTdL_4Q-Y" title="YouTube video player"></iframe>
+                    </div>
+            
+             
+                    
+                </div>
+            </li>
+            
+
+      
+
+            <li class="card">
+                <h2 class="card-title">5. To Perform Swinburne's Test on a DC Shunt Machine and Predetermine Its Efficiency When Running as a Motor as Well as Generator and Also Draw the Characteristic Curves</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent4')">Toggle Content</button>
+                <div id="theoryContent4" class="theoretical-content">
+                    <h3>Overview of Swinburne's Test</h3>
+                    <p>Swinburne's test is performed to predetermine the efficiency of a DC machine, both when running as a motor and as a generator. The test involves running the machine under no-load conditions, where the losses can be determined and used to calculate efficiency under load conditions.</p>
+            
+                    <h3>Key Concepts</h3>
+                    <p>During Swinburne's test, the core loss and friction losses are determined under no-load conditions. The efficiency is then calculated for both motor and generator modes by considering the losses and output power.</p>
+            
+                    <h3>Viva Questions</h3>
+                    <h4>1. What is Swinburne's test used for?</h4>
+                    <p><strong>Answer:</strong> Swinburne's test is used to predetermine the efficiency of a DC machine when running as a motor or generator by measuring the no-load losses.</p>
+            
+                    <h4>2. How is the efficiency of a DC machine calculated in Swinburne's test?</h4>
+                    <p><strong>Answer:</strong> The efficiency is calculated by subtracting the no-load losses from the total input power and then dividing the output power by the total input power.</p>
+            
+                    <div id="videoBlock4" class="video-section">
+                        <h3>How to Perform Swinburne's Test</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/nyxTdL_4Q-Y" title="YouTube video player"></iframe>
+                    </div>
+            
+          
+                </div>
+            </li>
+            
+
+            <li class="card">
+                <h2 class="card-title">6. To Conduct Load Test on DC Shunt Generator and Obtain Its Internal and External Characteristics</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent5')">Toggle Content</button>
+                <div id="theoryContent5" class="theoretical-content">
+                    <h3>Overview of Load Test on DC Shunt Generator</h3>
+                    <p>The load test on a DC shunt generator is conducted to obtain its internal and external characteristics. The test helps in evaluating the generator's performance, including its voltage regulation and efficiency under different load conditions.</p>
+            
+                    <h3>Key Concepts</h3>
+                    <p>During the load test, the generator is loaded with different resistive loads, and the output voltage is measured at various load levels. The internal characteristics of the generator, such as the internal resistance and the EMF, can be derived from these measurements.</p>
+            
+                    <h3>Viva Questions</h3>
+                    <h4>1. What are internal and external characteristics of a DC shunt generator?</h4>
+                    <p><strong>Answer:</strong> The external characteristics describe the relationship between the load current and terminal voltage. The internal characteristics describe the relationship between the load current and the generated EMF of the generator.</p>
+            
+                    <h4>2. How is voltage regulation determined in a DC shunt generator?</h4>
+                    <p><strong>Answer:</strong> Voltage regulation is determined by comparing the no-load voltage and the full-load voltage of the generator.</p>
+            
+                    <div id="videoBlock5" class="video-section">
+                        <h3>How to Perform a Load Test on a DC Shunt Generator</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/nyxTdL_4Q-Y" title="YouTube video player"></iframe>
+                    </div>
+            
+                              </div>
+            </li>
+            
+            <li class="card">
+                <h2 class="card-title">7. To Perform O.C./S.C. Tests on a Single Phase Transformer and Determine Equivalent Circuit Parameters</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent6')">Toggle Content</button>
+                <div id="theoryContent6" class="theoretical-content">
+                    <h3>Overview of O.C./S.C. Tests</h3>
+                    <p>The Open Circuit (O.C.) and Short Circuit (S.C.) tests are performed on a transformer to determine its equivalent circuit parameters. In the O.C. test, the secondary winding is open, and in the S.C. test, the secondary winding is short-circuited.</p>
+            
+                    <h3>Key Concepts</h3>
+                    <p>From the results of these tests, parameters such as the magnetizing reactance, series resistance, and leakage reactance can be calculated. These parameters help in determining the transformer's performance and efficiency.</p>
+            
+                    <h3>Viva Questions</h3>
+                    <h4>1. What are O.C. and S.C. tests used for?</h4>
+                    <p><strong>Answer:</strong> O.C. and S.C. tests are used to determine the equivalent circuit parameters of a transformer, such as the magnetizing reactance, series resistance, and leakage reactance.</p>
+            
+                    <h4>2. How do you perform the O.C. test on a transformer?</h4>
+                    <p><strong>Answer:</strong> The O.C. test is performed by applying rated voltage to the primary winding while keeping the secondary winding open and measuring the no-load current and losses.</p>
+            
+                    <div id="videoBlock6" class="video-section">
+                        <h3>O.C./S.C. Tests on a Single Phase Transformer</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/nyxTdL_4Q-Y" title="YouTube video player"></iframe>
+                    </div>
+            
+                    
+          
+                </div>
+            </li>
+            
+            <li class="card">
+                <h2 class="card-title">8. To Perform Sumpner's (Back to Back) Test on Two Identical Single Phase Transformers and Draw the Load Efficiency Graphs</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent7')">Toggle Content</button>
+                <div id="theoryContent7" class="theoretical-content">
+                    <h3>Overview of Sumpner's Test</h3>
+                    <p>Sumpner's test, also known as the back-to-back test, is used to determine the efficiency of transformers by connecting two identical transformers in parallel. It simulates the full-load condition without the need for large power input.</p>
+            
+                    <h3>Key Concepts</h3>
+                    <p>The test involves applying full voltage to both transformers, where one transformer is under load and the other is used to simulate losses. The efficiency is then calculated based on the input and output power for each transformer.</p>
+            
+                    <h3>Viva Questions</h3>
+                    <h4>1. What is the purpose of Sumpner's test?</h4>
+                    <p><strong>Answer:</strong> Sumpner's test is used to determine the efficiency of transformers under load conditions without requiring high power input, by connecting two identical transformers in parallel.</p>
+            
+                    <h4>2. How does the back-to-back configuration work in Sumpner's test?</h4>
+                    <p><strong>Answer:</strong> In the back-to-back configuration, the output of one transformer is connected to the primary of the second transformer, and both are loaded to simulate full-load conditions.</p>
+            
+                    <div id="videoBlock7" class="video-section">
+                        <h3>How to Perform Sumpner's (Back-to-Back) Test</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/nyxTdL_4Q-Y" title="YouTube video player"></iframe>
+                    </div>
+            
+            
+                </div>
+            </li>
+            <li class="card">
+                <h2 class="card-title">8. To Perform Load Test on a Single-Phase Transformer and Determine the Following:</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent8')">Toggle Content</button>
+                <div id="theoryContent8" class="theoretical-content">
+                    <h3>Overview of Load Test on Single-Phase Transformer</h3>
+                    <p>The load test on a single-phase transformer involves applying a varying load and measuring the corresponding changes in voltage, current, and power. This allows the determination of the voltage ratio, efficiency, and voltage regulation.</p>
+            
+                    <h3>Key Concepts</h3>
+                    <p>The voltage ratio is calculated as the ratio of the primary voltage to the secondary voltage under no-load conditions. The efficiency is calculated by comparing the input and output power, and voltage regulation is determined by comparing the no-load and full-load voltages.</p>
+            
+                    <h3>Viva Questions</h3>
+                    <h4>1. How do you calculate the voltage ratio of a transformer?</h4>
+                    <p><strong>Answer:</strong> The voltage ratio is calculated by dividing the primary voltage by the secondary voltage under no-load conditions.</p>
+            
+                    <h4>2. What is voltage regulation in a transformer?</h4>
+                    <p><strong>Answer:</strong> Voltage regulation is the percentage difference between the no-load voltage and the full-load voltage, indicating the ability of the transformer to maintain a stable output voltage under load variations.</p>
+            
+                    <div id="videoBlock8" class="video-section">
+                        <h3>Load Test on a Single-Phase Transformer</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/nyxTdL_4Q-Y" title="YouTube video player"></iframe>
+                    </div>
+            
+                  
+        
+                </div>
+            </li>
+            
+
+
+        </ul>
+    </section>
+
+    <script>
+        function toggleContent(contentId) {
+            var content = document.getElementById(contentId);
+
+            // Check if content is hidden (display is "none" or initial empty value)
+            if (content.style.display === "none" || content.style.display === "") {
+                content.style.display = "block"; // Show content
+            } else {
+                content.style.display = "none"; // Hide content
+            }
+        }
+    </script>
+</body>
+
+</html>

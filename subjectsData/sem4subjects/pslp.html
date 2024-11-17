@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiments List</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+       body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        .navbar {
+            background-color: #0B0425;
+            color: #fff;
+            padding: 15px 20px;
+        }
+
+        .navbar .brand {
+            text-decoration: none;
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .semester1 .section {
+            background-color: #1f2937;
+            padding: 4rem 2rem;
+            margin-top: 4rem;
+            position: relative;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .semester1 .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #f3f4f6;
+            font-weight: 800;
+        }
+
+        .semester1 .practicals-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .semester1 .practicals-list .card {
+            background: linear-gradient(to right, rgb(45, 45, 197),rgba(64, 201, 116, 0.678), rgb(45, 45, 197));
+            border-radius: 0.375rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #f3f4f6;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            text-align: center;
+        }
+
+        .semester1 .practicals-list .card:hover {
+            background-color: #4b5563;
+            transform: scale(1.02);
+        }
+
+        .semester1 .card-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .semester1 .theoretical-content,
+        .semester1 .code-block {
+            display: none;
+            text-align: left;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            background-color: #1e293b;
+            padding: 20px;
+            border-radius: 0.375rem;
+            margin-top: 1rem;
+        }
+
+        .semester1 .theoretical-content h3,
+        .semester1 .theoretical-content h4,
+        .semester1 .theoretical-content h5,
+        .semester1 .theoretical-content p,
+        .semester1 .theoretical-content ul {
+            text-align: left;
+            color: #f3f4f6;
+        }
+
+        .semester1 .theoretical-content h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .semester1 .theoretical-content h4 {
+            font-size: 1.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .semester1 .theoretical-content h5 {
+            font-size: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .semester1 .theoretical-content p {
+            font-size: 1.125rem;
+            margin: 0.5rem 0;
+            line-height: 1.8;
+        }
+
+        .semester1 .theoretical-content ul {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .semester1 .theoretical-content ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .semester1 .code-block {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 0.375rem;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre-wrap;
+        }
+
+        .reveal-button {
+            background-color: #0B0425;
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            font-size: 1.125rem;
+            margin-top: 1rem;
+            transition: background-color 0.3s ease;
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+
+        .reveal-button:hover {
+            background-color: rgb(47, 130, 255);
+        }
+
+        .container {
+            display: inline-block;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2rem;
+            width: 200px;
+            margin-left: auto;
+            margin-right: auto;
+
+        }
+
+        .semester1.section {
+            flex: 1;
+        }
+
+        .video-section {
+            
+            background-color: #1f2937;
+            padding: 2rem;
+            border-radius: 0.375rem;
+            text-align:left;
+        }
+        .video-section2 {
+          
+            background-color: #1f2937;
+            padding: 2rem;
+            border-radius: 0.375rem;
+            text-align:right;
+        }
+
+        .video-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #f3f4f6;
+            font-weight: 700;
+        }
+
+        .video-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .video-container iframe {
+            border-radius: 0.375rem;
+        }
+        .download-button {
+            width: 30vw;
+            display: inline-block;
+            padding: 1vh 2vh;
+            font-size: 3vh;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            margin-bottom: 3vh;
+        }
+
+        .download-button:hover {
+            background-color: #0056b3;
+        }
+
+        .INFO
+        {
+            padding: 1vh 2vh;
+            font-size: 4vh;
+            display: block;
+            margin-bottom: 2vh;
+            color: rgb(255, 255, 255);
+            align-items: center;
+            justify-content: center;
+            background-color: #0056b3;
+            border-radius: 10px;
+            max-width: 50vw;
+            max-height: 20vw;
+            margin: 4vh auto;
+        }
+
+        pre1 .output
+        {
+            display: inline-block;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="../semestershtml/semester7.html" class="brand">Back to Subjects</a>
+        </div>
+    </nav>
+
+    <!-- Experiments Section -->
+    <section class="semester1 section">
+        <h1 class="section-title">PSLP lab</h1>
+
+    <a href="files/sem7.pdf" download="ALL.pdf" class="download-button">Download PDF</a>
+    <div class="INFO">
+
+        Video + Theory 
+        
+    </div>
+
+        <ul class="practicals-list">
+          
+            
+            <li class="card">
+                <h2 class="card-title">1. Introduction to MATLAB and Its Basic Commands</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent1')">Toggle Content</button>
+                <div id="theoryContent1" class="theoretical-content">
+                    <h3>Overview</h3>
+                    <p>This experiment introduces MATLAB and its basic commands such as matrix operations, conditional statements, loops, and plotting.</p>
+            
+                    <h3>Code Example:</h3>
+                    <pre>
+            % MATLAB Basic Commands Example
+            x = 5; % Assign value to variable
+            y = 3; % Assign value to another variable
+            z = x * y; % Scalar multiplication
+            disp(['Result of multiplication: ', num2str(z)]); % Display result
+            
+            % Vector example
+            v = [1, 2, 3, 4, 5]; % Define a vector
+            disp('Vector:');
+            disp(v);
+            
+            % Plotting example
+            figure;
+            plot(v);
+            title('Basic Plot');
+            xlabel('Index');
+            ylabel('Value');
+                    </pre>
+                    <div class="video-section">
+                        <h3>Introduction to MATLAB</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/OSXJ2r0wTZ4" title="Introduction to MATLAB and Basic Commands"></iframe>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="card">
+                <h2 class="card-title">2. Plot Unit Step, Unit Impulse, Unit Ramp, Exponential, Parabolic Functions and Sinusoidal Signals</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent2')">Toggle Content</button>
+                <div id="theoryContent2" class="theoretical-content">
+                    <h3>Overview</h3>
+                    <p>This experiment involves plotting different standard signals like step, impulse, ramp, exponential, parabolic, and sinusoidal functions using MATLAB.</p>
+            
+                    <h3>Code Example:</h3>
+                    <pre>
+            % Define time vector
+            t = 0:0.1:10;
+            
+            % Unit step function
+            u = double(t >= 0);
+            
+            % Unit impulse function
+            impulse = [1, zeros(1, length(t)-1)];
+            
+            % Unit ramp function
+            ramp = t .* (t >= 0);
+            
+            % Exponential function
+            exp_func = exp(-t);
+            
+            % Parabolic function
+            parab = t.^2;
+            
+            % Sinusoidal function
+            sinusoid = sin(t);
+            
+            % Plotting all functions
+            figure;
+            subplot(3,2,1); plot(t, u); title('Unit Step');
+            subplot(3,2,2); stem(t, impulse); title('Unit Impulse');
+            subplot(3,2,3); plot(t, ramp); title('Unit Ramp');
+            subplot(3,2,4); plot(t, exp_func); title('Exponential');
+            subplot(3,2,5); plot(t, parab); title('Parabolic');
+            subplot(3,2,6); plot(t, sinusoid); title('Sinusoidal');
+                    </pre>
+                    <div class="video-section">
+                        <h3>Plotting Functions in MATLAB</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/vhK3NnSxO6A" title="Plotting Various Functions in MATLAB"></iframe>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="card">
+                <h2 class="card-title">3. Study the Transient Response of Series RLC Circuit for Different Types of Waveforms on CRO and Verify Using MATLAB</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent3')">Toggle Content</button>
+                <div id="theoryContent3" class="theoretical-content">
+                    <h3>Overview</h3>
+                    <p>This experiment studies the transient response of a series RLC circuit to different types of waveforms and verifies the results using MATLAB simulations.</p>
+            
+                    <h3>Code Example:</h3>
+                    <pre>
+            % RLC Circuit Transient Response
+            R = 1; % Resistance
+            L = 1; % Inductance
+            C = 1; % Capacitance
+            f = 10; % Frequency
+            omega = 2 * pi * f; % Angular frequency
+            
+            % Define time vector
+            t = 0:0.001:1;
+            
+            % Apply a sinusoidal voltage source
+            V = sin(omega * t);
+            
+            % Solve for the current in the circuit using the formula
+            I = V / R; % Simplified for demonstration purposes
+            
+            % Plot the voltage and current
+            figure;
+            subplot(2,1,1); plot(t, V); title('Voltage (V)');
+            subplot(2,1,2); plot(t, I); title('Current (I)');
+                    </pre>
+                    <div class="video-section">
+                        <h3>Transient Response of RLC Circuit</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/lKOBX0FvD0g" title="Transient Response of RLC Circuit"></iframe>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="card">
+                <h2 class="card-title">4. Study the Time Response of a Simulated Linear System and Verify the Unit Step and Square Wave Response of First Order and Second Order Type 0.1 System</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent4')">Toggle Content</button>
+                <div id="theoryContent4" class="theoretical-content">
+                    <h3>Overview</h3>
+                    <p>This experiment verifies the time response of a first-order and second-order system for unit step and square wave inputs using MATLAB simulations.</p>
+            
+                    <h3>Code Example:</h3>
+                    <pre>
+            % Define system transfer functions for first-order and second-order systems
+            sys1 = tf([1], [1, 1]); % First-order system
+            sys2 = tf([1], [1, 2, 1]); % Second-order system
+            
+            % Time vector for simulation
+            t = 0:0.01:10;
+            
+            % Step response for both systems
+            figure;
+            subplot(2,1,1);
+            step(sys1, t);
+            title('Step Response of First-Order System');
+            
+            subplot(2,1,2);
+            step(sys2, t);
+            title('Step Response of Second-Order System');
+                    </pre>
+                    <div class="video-section">
+                        <h3>Time Response of Linear Systems</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/2FZ8BQGJ8nM" title="Time Response of First and Second Order Systems"></iframe>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="card">
+                <h2 class="card-title">5. Using MATLAB Determine Current in Various Resistors Connected in Network Using Mesh Current and Node Voltage Analysis</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent5')">Toggle Content</button>
+                <div id="theoryContent5" class="theoretical-content">
+                    <h3>Overview</h3>
+                    <p>This experiment uses MATLAB to determine the currents in various resistors connected in a network using mesh current and node voltage analysis.</p>
+            
+                    <h3>Code Example:</h3>
+                    <pre>
+            % Mesh Current Analysis Example
+            
+            % Define the system matrix (A) and the constant matrix (B)
+            A = [2, -1, 0; -1, 2, -1; 0, -1, 2];
+            B = [1; 0; 1];
+            
+            % Solve for mesh currents
+            I = A \ B; % Mesh current solutions
+            
+            disp('Mesh Currents:');
+            disp(I);
+                    </pre>
+                    <div class="video-section">
+                        <h3>Mesh Current and Node Voltage Analysis</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/59cwvJeQj9Y" title="Mesh Current and Node Voltage Analysis"></iframe>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="card">
+                <h2 class="card-title">6. To Determine Z and Parameters of the Given Two-Port Network</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent6')">Toggle Content</button>
+                <div id="theoryContent6" class="theoretical-content">
+                    <h3>Overview</h3>
+                    <p>This experiment determines the Z and parameters of a given two-port network.</p>
+            
+                    <h3>Code Example:</h3>
+                    <pre>
+            % Example Z parameters calculation for two-port network
+            
+            % Given two-port network parameters
+            A = 2; B = 3;
+            C = 4; D = 5;
+            
+            % Z-parameters
+            Z11 = A - (B*C)/D;
+            Z12 = B;
+            Z21 = C;
+            Z22 = D - (B*C)/A;
+            
+            disp('Z Parameters:');
+            disp(['Z11: ', num2str(Z11)]);
+            disp(['Z12: ', num2str(Z12)]);
+            disp(['Z21: ', num2str(Z21)]);
+            disp(['Z22: ', num2str(Z22)]);
+                    </pre>
+                    <div class="video-section">
+                        <h3>Determining Z Parameters of Two-Port Network</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/Mjjr7hYP2I4" title="Determining Z Parameters of Two-Port Network"></iframe>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="card">
+                <h2 class="card-title">7. To Determine ABCD Parameters of the Given Two-Port Network</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent7')">Toggle Content</button>
+                <div id="theoryContent7" class="theoretical-content">
+                    <h3>Overview</h3>
+                    <p>This experiment calculates the ABCD parameters of a given two-port network.</p>
+            
+                    <h3>Code Example:</h3>
+                    <pre>
+            % Example ABCD parameters calculation for two-port network
+            
+            % Given two-port network parameters
+            A = 2; B = 3;
+            C = 4; D = 5;
+            
+            % ABCD Parameters
+            disp('ABCD Parameters:');
+            disp(['A: ', num2str(A)]);
+            disp(['B: ', num2str(B)]);
+            disp(['C: ', num2str(C)]);
+            disp(['D: ', num2str(D)]);
+                    </pre>
+                    <div class="video-section">
+                        <h3>Determining ABCD Parameters of Two-Port Network</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/Y7gYzdC-J5o" title="Determining ABCD Parameters of Two-Port Network"></iframe>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="card">
+                <h2 class="card-title">8. Fitting of Linear Regression Line Through Given Data Set and Testing of Goodness of Fit Using Mean Error</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent8')">Toggle Content</button>
+                <div id="theoryContent8" class="theoretical-content">
+                    <h3>Overview</h3>
+                    <p>This experiment demonstrates how to fit a linear regression line through a given data set and test the goodness of fit using the mean error.</p>
+            
+                    <h3>Code Example:</h3>
+                    <pre>
+            % Linear regression fitting
+            x = [1, 2, 3, 4, 5]; % Independent variable
+            y = [2, 4, 5, 4, 5]; % Dependent variable
+            
+            % Perform linear regression
+            p = polyfit(x, y, 1); % Fit a first-degree polynomial (linear)
+            y_fit = polyval(p, x); % Evaluate the fitted polynomial
+            
+            % Plot the data and the fitted line
+            figure;
+            plot(x, y, 'o', x, y_fit, '-');
+            title('Linear Regression Fit');
+            xlabel('x');
+            ylabel('y');
+            legend('Data points', 'Fitted line');
+            
+            % Calculate mean error
+            mean_error = mean(abs(y - y_fit));
+            disp(['Mean Error: ', num2str(mean_error)]);
+                    </pre>
+                    <div class="video-section">
+                        <h3>Linear Regression Explanation</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/sJ8YpWA3gFQ" title="Linear Regression - Explanation and Implementation"></iframe>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="card">
+                <h2 class="card-title">9. Fitting of Multiple Linear Regression (MLR) Curve Through Given Data Set and Testing of Goodness of Fit Using Mean Error</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent9')">Toggle Content</button>
+                <div id="theoryContent9" class="theoretical-content">
+                    <h3>Overview</h3>
+                    <p>This experiment demonstrates how to perform multiple linear regression (MLR) on a given data set and test the goodness of fit using the mean error.</p>
+            
+                    <h3>Code Example:</h3>
+                    <pre>
+            % Multiple Linear Regression (MLR)
+            x1 = [1, 2, 3, 4, 5]; % First independent variable
+            x2 = [5, 4, 3, 2, 1]; % Second independent variable
+            y = [2, 3, 4, 5, 6]; % Dependent variable
+            
+            % Create design matrix for MLR
+            X = [ones(length(x1), 1), x1', x2']; % Add column of ones for intercept
+            b = X \ y'; % Solve for regression coefficients
+            
+            % Compute the fitted values
+            y_fit = X * b;
+            
+            % Plot the data and fitted values
+            figure;
+            scatter3(x1, x2, y, 'filled');
+            hold on;
+            % Plot the fitted regression surface
+            [X1, X2] = meshgrid(min(x1):0.1:max(x1), min(x2):0.1:max(x2));
+            Y = b(1) + b(2)*X1 + b(3)*X2;
+            surf(X1, X2, Y);
+            
+            title('Multiple Linear Regression Fit');
+            xlabel('x1');
+            ylabel('x2');
+            zlabel('y');
+            
+            % Calculate mean error
+            mean_error = mean(abs(y - y_fit));
+            disp(['Mean Error: ', num2str(mean_error)]);
+                    </pre>
+                    <div class="video-section">
+                        <h3>Multiple Linear Regression Explanation</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/9Z1khT-2uMc" title="Multiple Linear Regression - Explanation and Examples"></iframe>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="card">
+                <h2 class="card-title">10. Solve a Linear Programming Problem (LPP) of Three Variables Using Simplex Method</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent10')">Toggle Content</button>
+                <div id="theoryContent10" class="theoretical-content">
+                    <h3>Overview</h3>
+                    <p>This experiment demonstrates how to solve a Linear Programming Problem (LPP) with three variables using the Simplex Method.</p>
+            
+                    <h3>Code Example:</h3>
+                    <pre>
+            % Example LPP: Maximize z = 3x + 2y + 4z
+            % Subject to constraints:
+            % x + y + z <= 10
+            % 2x + y + 2z <= 15
+            % x, y, z >= 0
+            
+            % Coefficients of the objective function
+            f = [-3, -2, -4]; % Negative for maximization
+            
+            % Coefficients of the constraints
+            A = [1, 1, 1; 2, 1, 2]; % Constraint matrix
+            b = [10; 15]; % Right-hand side
+            
+            % Solve the LPP using the Simplex method
+            options = optimset('Display', 'off');
+            [x, fval] = linprog(f, [], [], A, b, zeros(3,1), [], options);
+            
+            disp('Optimal Solution:');
+            disp(x);
+            disp('Optimal Value of Objective Function:');
+            disp(-fval); % Change sign to get maximized value
+                    </pre>
+                    <div class="video-section">
+                        <h3>Simplex Method for LPP</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/0YicLBQHk_U" title="Simplex Method - Linear Programming Problem"></iframe>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="card">
+                <h2 class="card-title">11. Solve a Transportation Problem of Three Variables</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent11')">Toggle Content</button>
+                <div id="theoryContent11" class="theoretical-content">
+                    <h3>Overview</h3>
+                    <p>This experiment demonstrates how to solve a transportation problem involving three variables using optimization techniques.</p>
+            
+                    <h3>Code Example:</h3>
+                    <pre>
+            % Example Transportation Problem
+            % Supply: [30, 40, 50]
+            % Demand: [20, 40, 60]
+            % Cost matrix:
+            %       C1  C2  C3
+            % S1  8   6   10
+            % S2  9   7   4
+            % S3  3   2   5
+            
+            supply = [30, 40, 50]; % Supply
+            demand = [20, 40, 60]; % Demand
+            cost = [8, 6, 10; 9, 7, 4; 3, 2, 5]; % Cost matrix
+            
+            % Solve the transportation problem using linprog
+            f = reshape(cost', [], 1); % Flatten the cost matrix into a vector
+            A_eq = [kron(eye(length(supply)), ones(1, length(demand))); kron(ones(1, length(supply)), eye(length(demand)))];
+            b_eq = [supply'; demand'];
+            x = linprog(f, [], [], A_eq, b_eq, zeros(length(f),1), []);
+            
+            disp('Optimal transportation plan:');
+            disp(reshape(x, length(supply), length(demand)));
+                    </pre>
+                    <div class="video-section">
+                        <h3>Transportation Problem Explained</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/peFJWIvmYWg" title="Transportation Problem Optimization"></iframe>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="card">
+                <h2 class="card-title">12. Solve an Assignment Problem of Three Variables</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent12')">Toggle Content</button>
+                <div id="theoryContent12" class="theoretical-content">
+                    <h3>Overview</h3>
+                    <p>This experiment demonstrates how to solve an assignment problem of three variables using optimization techniques.</p>
+            
+                    <h3>Code Example:</h3>
+                    <pre>
+            % Example Assignment Problem
+            % Cost matrix for assignments
+            %       A1  A2  A3
+            % P1   9   2   7
+            % P2   6   4   3
+            % P3   3   8   6
+            
+            cost = [9, 2, 7; 6, 4, 3; 3, 8, 6]; % Cost matrix
+            
+            % Solve the assignment problem using Hungarian algorithm
+            [x, fval] = munkres(cost);
+            
+            disp('Optimal assignment solution:');
+            disp(x);
+            disp('Total cost of assignment:');
+            disp(fval);
+                    </pre>
+                    <div class="video-section">
+                        <h3>Assignment Problem Explained</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/vPpmtJ7bBVE" title="Assignment Problem - Hungarian Algorithm"></iframe>
+                    </div>
+                </div>
+            </li>
+            
+            
+        </ul>
+    </section>
+
+    <script>
+        function toggleContent(contentId) {
+            var content = document.getElementById(contentId);
+
+            // Check if content is hidden (display is "none" or initial empty value)
+            if (content.style.display === "none" || content.style.display === "") {
+                content.style.display = "block"; // Show content
+            } else {
+                content.style.display = "none"; // Hide content
+            }
+        }
+    </script>
+</body>
+
+</html>

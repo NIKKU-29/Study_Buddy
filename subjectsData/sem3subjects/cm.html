@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiments List</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+       body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        .navbar {
+            background-color: #0B0425;
+            color: #fff;
+            padding: 15px 20px;
+        }
+
+        .navbar .brand {
+            text-decoration: none;
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .semester1 .section {
+            background-color: #1f2937;
+            padding: 4rem 2rem;
+            margin-top: 4rem;
+            position: relative;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .semester1 .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #f3f4f6;
+            font-weight: 800;
+        }
+
+        .semester1 .practicals-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .semester1 .practicals-list .card {
+            background: linear-gradient(to right, rgb(45, 45, 197),rgba(64, 201, 116, 0.678), rgb(45, 45, 197));
+            border-radius: 0.375rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #f3f4f6;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            text-align: center;
+        }
+
+        .semester1 .practicals-list .card:hover {
+            background-color: #4b5563;
+            transform: scale(1.02);
+        }
+
+        .semester1 .card-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .semester1 .theoretical-content,
+        .semester1 .code-block {
+            display: none;
+            text-align: left;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            background-color: #1e293b;
+            padding: 20px;
+            border-radius: 0.375rem;
+            margin-top: 1rem;
+        }
+
+        .semester1 .theoretical-content h3,
+        .semester1 .theoretical-content h4,
+        .semester1 .theoretical-content h5,
+        .semester1 .theoretical-content p,
+        .semester1 .theoretical-content ul {
+            text-align: left;
+            color: #f3f4f6;
+        }
+
+        .semester1 .theoretical-content h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .semester1 .theoretical-content h4 {
+            font-size: 1.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .semester1 .theoretical-content h5 {
+            font-size: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .semester1 .theoretical-content p {
+            font-size: 1.125rem;
+            margin: 0.5rem 0;
+            line-height: 1.8;
+        }
+
+        .semester1 .theoretical-content ul {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .semester1 .theoretical-content ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .semester1 .code-block {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 0.375rem;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre-wrap;
+        }
+
+        .reveal-button {
+            background-color: #0B0425;
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            font-size: 1.125rem;
+            margin-top: 1rem;
+            transition: background-color 0.3s ease;
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+
+        .reveal-button:hover {
+            background-color: rgb(47, 130, 255);
+        }
+
+        .container {
+            display: inline-block;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2rem;
+            width: 200px;
+            margin-left: auto;
+            margin-right: auto;
+
+        }
+
+        .semester1.section {
+            flex: 1;
+        }
+
+        .video-section {
+            
+            background-color: #1f2937;
+            padding: 2rem;
+            border-radius: 0.375rem;
+            text-align:left;
+        }
+        .video-section2 {
+          
+            background-color: #1f2937;
+            padding: 2rem;
+            border-radius: 0.375rem;
+            text-align:right;
+        }
+
+        .video-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #f3f4f6;
+            font-weight: 700;
+        }
+
+        .video-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .video-container iframe {
+            border-radius: 0.375rem;
+        }
+        .download-button {
+            width: 30vw;
+            display: inline-block;
+            padding: 1vh 2vh;
+            font-size: 3vh;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            margin-bottom: 3vh;
+        }
+
+        .download-button:hover {
+            background-color: #0056b3;
+        }
+
+        .INFO
+        {
+            padding: 1vh 2vh;
+            font-size: 4vh;
+            display: block;
+            margin-bottom: 2vh;
+            color: rgb(255, 255, 255);
+            align-items: center;
+            justify-content: center;
+            background-color: #0056b3;
+            border-radius: 10px;
+            max-width: 50vw;
+            max-height: 20vw;
+            margin: 4vh auto;
+        }
+
+        pre1 .output
+        {
+            display: inline-block;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="../semestershtml/semester7.html" class="brand">Back to Subjects</a>
+        </div>
+    </nav>
+
+    <!-- Experiments Section -->
+    <section class="semester1 section">
+        <h1 class="section-title"> Computational Methods Lab </h1>
+
+    <a href="files/sem7.pdf" download="ALL.pdf" class="download-button">Download PDF</a>
+    <div class="INFO">
+
+        Video + Theory 
+        
+    </div>
+
+        <ul class="practicals-list">
+            <li class="card">
+                <h2 class="card-title">1. Program for Finding Roots of f(x)=0 Using Newton-Raphson Method</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent1')">Toggle Content</button>
+                <div id="theoryContent1" class="theoretical-content">
+            
+                    <h3>Theory</h3>
+                    <p>The Newton-Raphson method is an iterative numerical technique used to find approximate roots of a real-valued function. It uses the formula:</p>
+                    <pre>
+                        x_(n+1) = x_n - f(x_n) / f'(x_n)
+                    </pre>
+                    <p>Where <code>x_n</code> is the current approximation, <code>f(x_n)</code> is the value of the function, and <code>f'(x_n)</code> is the derivative at that point. The process continues until the result converges to a root within a given tolerance.</p>
+            
+                    <h3>Applications</h3>
+                    <ul>
+                        <li>Finding roots of nonlinear equations in engineering and science.</li>
+                        <li>Used in optimization problems.</li>
+                    </ul>
+            
+                    <h3>Algorithm Steps</h3>
+                    <ol>
+                        <li>Choose an initial guess, <code>x0</code>.</li>
+                        <li>Calculate the next approximation using the formula.</li>
+                        <li>Repeat until the change is smaller than a predefined tolerance.</li>
+                    </ol>
+            
+                    <h3>Python Code</h3>
+                    <pre><code>
+            def newton_raphson(f, df, x0, tol=1e-6, max_iter=100):
+                """
+                Finds a root of f(x) = 0 using the Newton-Raphson method.
+                
+                Parameters:
+                f  - Function for which the root is to be found
+                df - Derivative of the function
+                x0 - Initial guess
+                tol - Tolerance for convergence
+                max_iter - Maximum number of iterations
+                
+                Returns:
+                Approximate root of f(x) = 0
+                """
+                for i in range(max_iter):
+                    x1 = x0 - f(x0) / df(x0)
+                    if abs(x1 - x0) < tol:
+                        return x1
+                    x0 = x1
+                raise ValueError("Method did not converge")
+            
+            # Example Function
+            f = lambda x: x**3 - x - 2  # Function f(x)
+            df = lambda x: 3*x**2 - 1   # Derivative f'(x)
+            
+            # Initial Guess
+            x0 = 1.5
+            
+            # Find Root
+            root = newton_raphson(f, df, x0)
+            print("Root:", root)
+                    </code></pre>
+            
+                    <h3>Example Output</h3>
+                    <pre>
+            Root: 1.5213797068045674
+                    </pre>
+            
+                    <h3>Video Explanation</h3>
+                    <div id="videoBlock1" class="video-section">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/exampleURL" title="YouTube video player"></iframe>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="card">
+                <h2 class="card-title">2. Program for Finding Roots of f(x)=0 Using Bisection Method</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent2')">Toggle Content</button>
+                <div id="theoryContent2" class="theoretical-content">
+            
+                    <h3>Theory</h3>
+                    <p>The Bisection method is a simple and robust numerical technique to find roots of a continuous function. It is based on the Intermediate Value Theorem, which states that if <code>f(a)</code> and <code>f(b)</code> have opposite signs, there exists at least one root between <code>a</code> and <code>b</code>.</p>
+                    <p>The algorithm repeatedly halves the interval <code>[a, b]</code> until the root is approximated within a specified tolerance.</p>
+            
+                    <h3>Applications</h3>
+                    <ul>
+                        <li>Used in scenarios where the function is continuous and a root is known to exist in a specific interval.</li>
+                        <li>Applicable in engineering, physics, and financial modeling.</li>
+                    </ul>
+            
+                    <h3>Algorithm Steps</h3>
+                    <ol>
+                        <li>Start with an interval <code>[a, b]</code> such that <code>f(a)</code> and <code>f(b)</code> have opposite signs.</li>
+                        <li>Calculate the midpoint <code>c = (a + b) / 2</code>.</li>
+                        <li>Check if <code>f(c) = 0</code> or the interval is smaller than a given tolerance. If true, stop.</li>
+                        <li>Else, replace either <code>a</code> or <code>b</code> based on the sign of <code>f(c)</code>.</li>
+                        <li>Repeat until the root is found to the desired precision.</li>
+                    </ol>
+            
+                    <h3>Python Code</h3>
+                    <pre><code>
+            def bisection_method(f, a, b, tol=1e-6, max_iter=100):
+                """
+                Finds a root of f(x) = 0 using the Bisection method.
+                
+                Parameters:
+                f  - Function for which the root is to be found
+                a  - Lower bound of the interval
+                b  - Upper bound of the interval
+                tol - Tolerance for convergence
+                max_iter - Maximum number of iterations
+                
+                Returns:
+                Approximate root of f(x) = 0
+                """
+                if f(a) * f(b) >= 0:
+                    raise ValueError("f(a) and f(b) must have opposite signs")
+            
+                for i in range(max_iter):
+                    c = (a + b) / 2
+                    if abs(f(c)) < tol or (b - a) / 2 < tol:
+                        return c
+                    if f(c) * f(a) < 0:
+                        b = c
+                    else:
+                        a = c
+                raise ValueError("Method did not converge")
+            
+            # Example Function
+            f = lambda x: x**3 - x - 2  # Function f(x)
+            
+            # Interval [a, b]
+            a, b = 1, 2
+            
+            # Find Root
+            root = bisection_method(f, a, b)
+            print("Root:", root)
+                    </code></pre>
+            
+                    <h3>Example Output</h3>
+                    <pre>
+            Root: 1.5213775634765625
+                    </pre>
+            
+                    <h3>Video Explanation</h3>
+                    <div id="videoBlock2" class="video-section">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/exampleURL" title="YouTube video player"></iframe>
+                    </div>
+                </div>
+            </li>
+            
+            
+            <li class="card">
+                <h2 class="card-title">3. Program for Finding Roots of f(x)=0 Using Secant Method</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent3')">Toggle Content</button>
+                <div id="theoryContent3" class="theoretical-content">
+            
+                    <h3>Theory</h3>
+                    <p>The Secant method is a numerical technique to find the root of a real-valued function. It is an iterative method that uses a sequence of secant lines to approximate the root. Unlike the Newton-Raphson method, it does not require the derivative of the function.</p>
+                    <p>The update formula is:</p>
+                    <pre>
+                        x_(n+1) = x_n - f(x_n) * ((x_n - x_(n-1)) / (f(x_n) - f(x_(n-1))))
+                    </pre>
+                    <p>Here, <code>x_n</code> and <code>x_(n-1)</code> are the two most recent approximations of the root.</p>
+            
+                    <h3>Applications</h3>
+                    <ul>
+                        <li>Used to solve nonlinear equations where derivative computation is complex or unavailable.</li>
+                        <li>Useful in engineering, physics, and mathematical modeling.</li>
+                    </ul>
+            
+                    <h3>Algorithm Steps</h3>
+                    <ol>
+                        <li>Start with two initial guesses, <code>x0</code> and <code>x1</code>.</li>
+                        <li>Compute <code>x2</code> using the Secant formula.</li>
+                        <li>Check if <code>|x2 - x1|</code> is smaller than a specified tolerance. If true, stop.</li>
+                        <li>Otherwise, update <code>x0 = x1</code> and <code>x1 = x2</code> and repeat.</li>
+                    </ol>
+            
+                    <h3>Python Code</h3>
+                    <pre><code>
+            def secant_method(f, x0, x1, tol=1e-6, max_iter=100):
+                """
+                Finds a root of f(x) = 0 using the Secant method.
+                
+                Parameters:
+                f  - Function for which the root is to be found
+                x0 - First initial guess
+                x1 - Second initial guess
+                tol - Tolerance for convergence
+                max_iter - Maximum number of iterations
+                
+                Returns:
+                Approximate root of f(x) = 0
+                """
+                for i in range(max_iter):
+                    if abs(f(x1) - f(x0)) < tol:
+                        raise ValueError("Denominator too small")
+                    x2 = x1 - f(x1) * (x1 - x0) / (f(x1) - f(x0))
+                    if abs(x2 - x1) < tol:
+                        return x2
+                    x0, x1 = x1, x2
+                raise ValueError("Method did not converge")
+            
+            # Example Function
+            f = lambda x: x**3 - x - 2  # Function f(x)
+            
+            # Initial Guesses
+            x0, x1 = 1, 2
+            
+            # Find Root
+            root = secant_method(f, x0, x1)
+            print("Root:", root)
+                    </code></pre>
+            
+                    <h3>Example Output</h3>
+                    <pre>
+            Root: 1.5213797068045674
+                    </pre>
+            
+                    <h3>Video Explanation</h3>
+                    <div id="videoBlock3" class="video-section">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/exampleURL" title="YouTube video player"></iframe>
+                    </div>
+                </div>
+            </li>
+            
+            
+            <li class="card">
+                <h2 class="card-title">4. To Implement Lagrange's Interpolation Formula</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent4')">Toggle Content</button>
+                <div id="theoryContent4" class="theoretical-content">
+            
+                    <h3>Theory</h3>
+                    <p>Lagrange's Interpolation is a numerical method used to estimate the value of a function for a given point using a polynomial that passes through a set of known data points. It is defined as:</p>
+                    <pre>
+                        P(x) = Σ (y_i * L_i(x))
+                    </pre>
+                    <p>Where <code>L_i(x)</code> is the Lagrange basis polynomial:</p>
+                    <pre>
+                        L_i(x) = Π ((x - x_j) / (x_i - x_j)) for j ≠ i
+                    </pre>
+                    <p>Here, <code>x_i</code> and <code>y_i</code> are the given data points.</p>
+            
+                    <h3>Applications</h3>
+                    <ul>
+                        <li>Used for interpolating data in engineering, physics, and computer graphics.</li>
+                        <li>Useful in situations where the function is unknown but discrete data points are given.</li>
+                    </ul>
+            
+                    <h3>Algorithm Steps</h3>
+                    <ol>
+                        <li>Input the known data points <code>(x_i, y_i)</code>.</li>
+                        <li>For each point, compute the Lagrange basis polynomial <code>L_i(x)</code>.</li>
+                        <li>Multiply <code>L_i(x)</code> with <code>y_i</code> and sum over all points.</li>
+                        <li>Evaluate the resulting polynomial at the desired value of <code>x</code>.</li>
+                    </ol>
+            
+                    <h3>Python Code</h3>
+                    <pre><code>
+            def lagrange_interpolation(x_values, y_values, x):
+                """
+                Performs Lagrange interpolation for a given set of data points.
+                
+                Parameters:
+                x_values - List of x-coordinates of the data points
+                y_values - List of y-coordinates of the data points
+                x - Point at which to evaluate the polynomial
+                
+                Returns:
+                Interpolated value of the function at x
+                """
+                n = len(x_values)
+                result = 0
+                for i in range(n):
+                    term = y_values[i]
+                    for j in range(n):
+                        if i != j:
+                            term *= (x - x_values[j]) / (x_values[i] - x_values[j])
+                    result += term
+                return result
+            
+            # Example Data Points
+            x_values = [1, 2, 3]
+            y_values = [1, 4, 9]  # Corresponding to f(x) = x^2
+            
+            # Point to Interpolate
+            x = 2.5
+            
+            # Compute Interpolated Value
+            interpolated_value = lagrange_interpolation(x_values, y_values, x)
+            print("Interpolated Value at x =", x, "is", interpolated_value)
+                    </code></pre>
+            
+                    <h3>Example Output</h3>
+                    <pre>
+            Interpolated Value at x = 2.5 is 6.25
+                    </pre>
+            
+                    <h3>Video Explanation</h3>
+                    <div id="videoBlock4" class="video-section">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/exampleURL" title="YouTube video player"></iframe>
+                    </div>
+                </div>
+            </li>
+            
+
+
+       <li class="card">
+    <h2 class="card-title">5. To Implement Newton's Divided Difference Formula</h2>
+    <button class="reveal-button" onclick="toggleContent('theoryContent5')">Toggle Content</button>
+    <div id="theoryContent5" class="theoretical-content">
+
+        <h3>Theory</h3>
+        <p>Newton's Divided Difference formula is a method for polynomial interpolation that builds an interpolating polynomial using a recursive approach based on divided differences. The formula is represented as:</p>
+        <pre>
+            P(x) = f[x0] + f[x0, x1](x - x0) + f[x0, x1, x2](x - x0)(x - x1) + ...
+        </pre>
+        <p>Where <code>f[x0]</code>, <code>f[x0, x1]</code>, <code>f[x0, x1, x2]</code>, etc., are divided differences computed iteratively.</p>
+
+        <h3>Applications</h3>
+        <ul>
+            <li>Used for interpolating data when equidistant spacing between points is not guaranteed.</li>
+            <li>Preferred in numerical methods due to its simplicity and recursive nature.</li>
+        </ul>
+
+        <h3>Algorithm Steps</h3>
+        <ol>
+            <li>Input the data points <code>(x_i, y_i)</code>.</li>
+            <li>Build the divided difference table.</li>
+            <li>Construct the Newton polynomial using the divided differences.</li>
+            <li>Evaluate the polynomial at the desired value of <code>x</code>.</li>
+        </ol>
+
+        <h3>Python Code</h3>
+        <pre><code>
+import numpy as np
+
+def newton_divided_difference(x_values, y_values, x):
+    """
+    Performs interpolation using Newton's Divided Difference formula.
+    
+    Parameters:
+    x_values - List of x-coordinates of the data points
+    y_values - List of y-coordinates of the data points
+    x - Point at which to evaluate the polynomial
+    
+    Returns:
+    Interpolated value of the function at x
+    """
+    n = len(x_values)
+    diff_table = np.zeros((n, n))
+    diff_table[:, 0] = y_values
+
+    # Fill the divided difference table
+    for j in range(1, n):
+        for i in range(n - j):
+            diff_table[i][j] = (diff_table[i + 1][j - 1] - diff_table[i][j - 1]) / (x_values[i + j] - x_values[i])
+
+    # Calculate the interpolated value
+    result = diff_table[0, 0]
+    term = 1
+    for i in range(1, n):
+        term *= (x - x_values[i - 1])
+        result += term * diff_table[0, i]
+    
+    return result
+
+# Example Data Points
+x_values = [1, 2, 3, 4]
+y_values = [1, 8, 27, 64]  # Corresponding to f(x) = x^3
+
+# Point to Interpolate
+x = 2.5
+
+# Compute Interpolated Value
+interpolated_value = newton_divided_difference(x_values, y_values, x)
+print("Interpolated Value at x =", x, "is", interpolated_value)
+        </code></pre>
+
+        <h3>Example Output</h3>
+        <pre>
+Interpolated Value at x = 2.5 is 15.625
+        </pre>
+
+        <h3>Video Explanation</h3>
+        <div id="videoBlock5" class="video-section">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/exampleURL" title="YouTube video player"></iframe>
+        </div>
+    </div>
+</li>
+
+
+
+<li class="card">
+    <h2 class="card-title">6. Program for Solving Numerical Integration by Trapezoidal Rule</h2>
+    <button class="reveal-button" onclick="toggleContent('theoryContent6')">Toggle Content</button>
+    <div id="theoryContent6" class="theoretical-content">
+
+        <h3>Theory</h3>
+        <p>The Trapezoidal Rule is a numerical method to approximate the definite integral of a function. It works by dividing the area under the curve into trapezoids and summing their areas. The formula for the rule is:</p>
+        <pre>
+            ∫(a to b) f(x) dx ≈ (h/2) * [f(a) + 2*f(x1) + 2*f(x2) + ... + f(b)]
+        </pre>
+        <p>Where <code>h</code> is the step size, calculated as:</p>
+        <pre>
+            h = (b - a) / n
+        </pre>
+        <p><code>n</code> is the number of intervals, and <code>x1, x2, ...</code> are intermediate points.</p>
+
+        <h3>Applications</h3>
+        <ul>
+            <li>Used for approximating integrals of functions that are difficult to integrate analytically.</li>
+            <li>Widely used in engineering, physics, and applied mathematics.</li>
+        </ul>
+
+        <h3>Algorithm Steps</h3>
+        <ol>
+            <li>Define the function <code>f(x)</code> to integrate.</li>
+            <li>Specify the limits of integration <code>a</code> and <code>b</code>, and the number of intervals <code>n</code>.</li>
+            <li>Calculate the step size <code>h</code>.</li>
+            <li>Apply the Trapezoidal formula to compute the integral.</li>
+        </ol>
+
+        <h3>Python Code</h3>
+        <pre><code>
+def trapezoidal_rule(f, a, b, n):
+    """
+    Computes the integral of f(x) using the Trapezoidal Rule.
+    
+    Parameters:
+    f - Function to integrate
+    a - Lower limit of integration
+    b - Upper limit of integration
+    n - Number of intervals
+    
+    Returns:
+    Approximate value of the integral
+    """
+    h = (b - a) / n
+    integral = (f(a) + f(b)) / 2.0
+    for i in range(1, n):
+        integral += f(a + i * h)
+    return integral * h
+
+# Example Function
+f = lambda x: x**2  # Function f(x) = x^2
+
+# Integration Limits
+a, b = 0, 1
+
+# Number of Intervals
+n = 4
+
+# Compute Integral
+result = trapezoidal_rule(f, a, b, n)
+print("Integral of f(x) from", a, "to", b, "is approximately:", result)
+        </code></pre>
+
+        <h3>Example Output</h3>
+        <pre>
+Integral of f(x) from 0 to 1 is approximately: 0.34375
+        </pre>
+
+        <h3>Video Explanation</h3>
+        <div id="videoBlock6" class="video-section">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/exampleURL" title="YouTube video player"></iframe>
+        </div>
+    </div>
+</li>
+
+<li class="card">
+    <h2 class="card-title">7. Program for Solving Numerical Integration by Simpson's 1/3 Rule</h2>
+    <button class="reveal-button" onclick="toggleContent('theoryContent7')">Toggle Content</button>
+    <div id="theoryContent7" class="theoretical-content">
+
+        <h3>Theory</h3>
+        <p>Simpson's 1/3 Rule is a numerical method to approximate the definite integral of a function. It works by dividing the interval into an even number of subintervals and fitting a parabola through the points. The formula is:</p>
+        <pre>
+            ∫(a to b) f(x) dx ≈ (h/3) * [f(a) + 4*f(x1) + 2*f(x2) + 4*f(x3) + ... + f(b)]
+        </pre>
+        <p>Where <code>h</code> is the step size, calculated as:</p>
+        <pre>
+            h = (b - a) / n
+        </pre>
+        <p><code>n</code> must be an even number, and <code>x1, x2, ...</code> are intermediate points.</p>
+
+        <h3>Applications</h3>
+        <ul>
+            <li>Used for approximating integrals of functions with smooth curves.</li>
+            <li>Frequently used in engineering, physics, and applied mathematics for high-accuracy integration.</li>
+        </ul>
+
+        <h3>Algorithm Steps</h3>
+        <ol>
+            <li>Define the function <code>f(x)</code> to integrate.</li>
+            <li>Specify the limits of integration <code>a</code> and <code>b</code>, and the number of intervals <code>n</code> (must be even).</li>
+            <li>Calculate the step size <code>h</code>.</li>
+            <li>Apply the Simpson's 1/3 formula to compute the integral.</li>
+        </ol>
+
+        <h3>Python Code</h3>
+        <pre><code>
+def simpsons_one_third_rule(f, a, b, n):
+    """
+    Computes the integral of f(x) using Simpson's 1/3 Rule.
+    
+    Parameters:
+    f - Function to integrate
+    a - Lower limit of integration
+    b - Upper limit of integration
+    n - Number of intervals (must be even)
+    
+    Returns:
+    Approximate value of the integral
+    """
+    if n % 2 != 0:
+        raise ValueError("Number of intervals (n) must be even for Simpson's 1/3 Rule.")
+    
+    h = (b - a) / n
+    integral = f(a) + f(b)
+    
+    for i in range(1, n):
+        x = a + i * h
+        coefficient = 4 if i % 2 != 0 else 2
+        integral += coefficient * f(x)
+    
+    return (h / 3) * integral
+
+# Example Function
+f = lambda x: x**2  # Function f(x) = x^2
+
+# Integration Limits
+a, b = 0, 1
+
+# Number of Intervals (must be even)
+n = 4
+
+# Compute Integral
+result = simpsons_one_third_rule(f, a, b, n)
+print("Integral of f(x) from", a, "to", b, "is approximately:", result)
+        </code></pre>
+
+        <h3>Example Output</h3>
+        <pre>
+Integral of f(x) from 0 to 1 is approximately: 0.3333333333333333
+        </pre>
+
+        <h3>Video Explanation</h3>
+        <div id="videoBlock7" class="video-section">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/exampleURL" title="YouTube video player"></iframe>
+        </div>
+    </div>
+</li>
+
+<li class="card">
+    <h2 class="card-title">8. Program to Demonstrate Numerical Integration Using Simpson's 3/8 Rule</h2>
+    <button class="reveal-button" onclick="toggleContent('theoryContent8')">Toggle Content</button>
+    <div id="theoryContent8" class="theoretical-content">
+        <h3>Overview of Simpson's 3/8 Rule</h3>
+        <p>The Simpson's 3/8 rule is a method for numerical integration that estimates the value of a definite integral. It is based on approximating the integrand with a cubic polynomial, fitting it through three points. The formula is more accurate than the simpler Trapezoidal rule for approximating integrals.</p>
+
+        <h3>Key Concepts</h3>
+        <p>Simpson's 3/8 rule improves upon the Trapezoidal rule by using cubic interpolation instead of linear interpolation. It is best used when the number of subintervals is a multiple of 3. The integral is approximated by summing weighted function values at equally spaced points across the interval.</p>
+
+        <h3>Viva Questions</h3>
+        <h4>1. What is the Simpson's 3/8 rule?</h4>
+        <p><strong>Answer:</strong> Simpson's 3/8 rule is a method for numerical integration that approximates the integral of a function by fitting cubic polynomials through sets of three points and summing the weighted contributions of these polynomials.</p>
+
+        <h4>2. How is Simpson’s 3/8 rule different from Simpson’s 1/3 rule?</h4>
+        <p><strong>Answer:</strong> While Simpson’s 1/3 rule uses quadratic polynomials, Simpson’s 3/8 rule uses cubic polynomials. It also requires that the number of subintervals be a multiple of 3, providing a more accurate approximation in many cases.</p>
+
+        <h4>3. Why must the number of subintervals be a multiple of 3 in Simpson’s 3/8 rule?</h4>
+        <p><strong>Answer:</strong> The method divides the interval into subintervals of size 3, where the rule uses the values at 3 evenly spaced points to fit a cubic polynomial. If the number of subintervals is not a multiple of 3, the rule cannot be properly applied.</p>
+
+        <h4>4. What is the main advantage of using Simpson's 3/8 rule?</h4>
+        <p><strong>Answer:</strong> Simpson's 3/8 rule is more accurate than the Trapezoidal rule and can provide better approximations of integrals for smooth functions, especially when the number of subintervals is a multiple of 3.</p>
+
+        <h4>5. What are the disadvantages of Simpson's 3/8 rule?</h4>
+        <p><strong>Answer:</strong> The rule requires that the number of subintervals be a multiple of 3, and it may be computationally expensive for highly oscillatory functions or large datasets due to the cubic interpolation.</p>
+
+        <div id="videoBlock8" class="video-section">
+            <h3>How to Perform Numerical Integration using Simpson's 3/8 Rule</h3>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/nyxTdL_4Q-Y" title="YouTube video player"></iframe>
+        </div>
+
+        <h3>Code Example for Simpson’s 3/8 Rule in Python</h3>
+        <pre><code>
+# Function for Simpson's 3/8 rule
+def simpsons_38_rule(f, a, b, n):
+    """
+    f: function to integrate
+    a: lower limit of integration
+    b: upper limit of integration
+    n: number of subintervals (must be a multiple of 3)
+    """
+    # Check if n is a multiple of 3
+    if n % 3 != 0:
+        raise ValueError("n must be a multiple of 3")
+
+    # Calculate the step size
+    h = (b - a) / n
+
+    # Evaluate the function at the endpoints and at the subinterval points
+    integral = f(a) + f(b)
+
+    # Apply Simpson's 3/8 rule: sum over the interior points
+    for i in range(1, n, 3):
+        integral += 3 * (f(a + i*h) + f(a + (i+1)*h))
+    for i in range(2, n, 3):
+        integral += 3 * f(a + i*h)
+
+    # Multiply by (3h/8) to get the final result
+    integral *= 3 * h / 8
+
+    return integral
+
+# Example usage: Integrating f(x) = x^2 over the interval [0, 2] with n=6 subintervals
+def example_function(x):
+    return x ** 2
+
+# Integration bounds
+a = 0  # lower bound
+b = 2  # upper bound
+n = 6  # number of subintervals (must be a multiple of 3)
+
+# Calling the function to perform integration
+result = simpsons_38_rule(example_function, a, b, n)
+print(f"Result of integration: {result}")
+        </code></pre>
+    </div>
+</li>
+<li class="card">
+    <h2 class="card-title">9. Inverse of a System of Linear Equations using Gauss-Jordan Method</h2>
+    <button class="reveal-button" onclick="toggleContent('theoryContent9')">Toggle Content</button>
+    <div id="theoryContent9" class="theoretical-content">
+        <h3>Overview of Gauss-Jordan Method</h3>
+        <p>The Gauss-Jordan method is an algorithm used for finding the inverse of a matrix. It is an extension of Gaussian elimination, and it involves transforming a given matrix into its inverse by performing row operations. This method is particularly useful for solving systems of linear equations.</p>
+
+        <h3>Key Concepts</h3>
+        <p>The Gauss-Jordan elimination method transforms a matrix into its reduced row echelon form (RREF) to find its inverse. The matrix is augmented with the identity matrix, and row operations are performed until the original matrix is converted into the identity matrix, with the inverse in the augmented section.</p>
+
+        <h3>Viva Questions</h3>
+        <h4>1. What is the Gauss-Jordan method?</h4>
+        <p><strong>Answer:</strong> The Gauss-Jordan method is an algorithm used to find the inverse of a matrix by transforming the given matrix into the identity matrix using row operations, while performing the same operations on an augmented identity matrix to obtain the inverse.</p>
+
+        <h4>2. How do you perform row operations in the Gauss-Jordan method?</h4>
+        <p><strong>Answer:</strong> Row operations in the Gauss-Jordan method include swapping two rows, multiplying a row by a non-zero constant, and adding or subtracting a multiple of one row to another. These operations help reduce the matrix to its identity form.</p>
+
+        <h4>3. When does a matrix not have an inverse using Gauss-Jordan elimination?</h4>
+        <p><strong>Answer:</strong> If a matrix is singular (i.e., its determinant is 0), it does not have an inverse. This will be evident during the Gauss-Jordan method when the matrix cannot be reduced to the identity matrix.</p>
+
+        <h4>4. What is the time complexity of the Gauss-Jordan method?</h4>
+        <p><strong>Answer:</strong> The time complexity of the Gauss-Jordan method is O(n³), where n is the size of the matrix. This is due to the repeated row operations for each element in the matrix.</p>
+
+        <div id="videoBlock9" class="video-section">
+            <h3>How to Find the Inverse of a Matrix using Gauss-Jordan Method</h3>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/nyxTdL_4Q-Y" title="YouTube video player"></iframe>
+        </div>
+
+        <h3>Code Example for Gauss-Jordan Method in Python</h3>
+        <pre><code>
+import numpy as np
+
+# Function to perform Gauss-Jordan elimination
+def gauss_jordan(matrix):
+    n = len(matrix)
+    augmented_matrix = np.hstack((matrix, np.eye(n)))
+
+    for i in range(n):
+        # Make the diagonal element 1
+        augmented_matrix[i] = augmented_matrix[i] / augmented_matrix[i, i]
+
+        # Make all other elements in the column 0
+        for j in range(n):
+            if i != j:
+                augmented_matrix[j] = augmented_matrix[j] - augmented_matrix[j, i] * augmented_matrix[i]
+
+    return augmented_matrix[:, n:]
+
+# Example usage: Finding the inverse of a matrix
+matrix = np.array([[4, 7], [2, 6]], dtype=float)
+inverse_matrix = gauss_jordan(matrix)
+print("Inverse Matrix:")
+print(inverse_matrix)
+        </code></pre>
+    </div>
+</li>
+
+<li class="card">
+    <h2 class="card-title">10. Find the Eigenvalues using Power Method</h2>
+    <button class="reveal-button" onclick="toggleContent('theoryContent10')">Toggle Content</button>
+    <div id="theoryContent10" class="theoretical-content">
+        <h3>Overview of the Power Method</h3>
+        <p>The Power Method is an iterative technique used to find the dominant eigenvalue (the one with the largest absolute value) and its corresponding eigenvector of a matrix. The method works by repeatedly multiplying a random vector by the matrix, which converges to the dominant eigenvector after several iterations.</p>
+
+        <h3>Key Concepts</h3>
+        <p>The Power Method is used when we are interested in finding the largest eigenvalue of a matrix. Starting with a random vector, we repeatedly multiply the matrix by the vector and normalize it. As the iterations progress, the vector converges to the eigenvector corresponding to the largest eigenvalue.</p>
+
+        <h3>Viva Questions</h3>
+        <h4>1. What is the Power Method?</h4>
+        <p><strong>Answer:</strong> The Power Method is an iterative algorithm used to find the largest eigenvalue and its corresponding eigenvector of a matrix. It works by multiplying a random vector by the matrix and normalizing it in each iteration.</p>
+
+        <h4>2. What are the limitations of the Power Method?</h4>
+        <p><strong>Answer:</strong> The Power Method only finds the dominant eigenvalue (largest absolute value). It cannot find other eigenvalues, especially if they are very close to the largest one. Additionally, the matrix must be diagonalizable for the method to converge.</p>
+
+        <h4>3. How do you ensure convergence in the Power Method?</h4>
+        <p><strong>Answer:</strong> Convergence is ensured by choosing a starting vector that is not orthogonal to the dominant eigenvector. The number of iterations required for convergence depends on how dominant the largest eigenvalue is compared to the others.</p>
+
+        <h4>4. What happens if the matrix has multiple eigenvalues with the same value?</h4>
+        <p><strong>Answer:</strong> If the matrix has multiple eigenvalues with the same value, the Power Method will not converge to a unique eigenvector. In such cases, other methods, like the QR algorithm, may be used.</p>
+
+        <div id="videoBlock10" class="video-section">
+            <h3>How to Find Eigenvalues using Power Method</h3>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/nyxTdL_4Q-Y" title="YouTube video player"></iframe>
+        </div>
+
+        <h3>Code Example for Power Method in Python</h3>
+        <pre><code>
+import numpy as np
+
+# Function to perform Power Method
+def power_method(A, num_iterations=1000, tolerance=1e-6):
+    n = A.shape[1]
+    b_k = np.random.rand(n)
+
+    for _ in range(num_iterations):
+        # Multiply the matrix by the vector
+        b_k1 = np.dot(A, b_k)
+        
+        # Normalize the vector
+        b_k1_norm = np.linalg.norm(b_k1)
+        b_k1 = b_k1 / b_k1_norm
+        
+        # Check for convergence
+        if np.linalg.norm(b_k1 - b_k) < tolerance:
+            break
+        b_k = b_k1
+
+    # Eigenvalue is the Rayleigh quotient
+    eigenvalue = np.dot(b_k.T, np.dot(A, b_k))
+    return eigenvalue, b_k
+
+# Example usage: Finding the largest eigenvalue
+A = np.array([[4, -1], [-1, 3]], dtype=float)
+eigenvalue, eigenvector = power_method(A)
+print(f"Eigenvalue: {eigenvalue}")
+print(f"Eigenvector: {eigenvector}")
+        </code></pre>
+    </div>
+</li>
+
+<li class="card">
+    <h2 class="card-title">11. Program for Solving Ordinary Differential Equation by Runge-Kutta Method</h2>
+    <button class="reveal-button" onclick="toggleContent('theoryContent11')">Toggle Content</button>
+    <div id="theoryContent11" class="theoretical-content">
+        <h3>Overview of Runge-Kutta Method</h3>
+        <p>The Runge-Kutta methods are a family of iterative methods used to solve ordinary differential equations (ODEs). The most commonly used is the fourth-order Runge-Kutta method (RK4), which provides an approximation of the solution to an ODE with a high degree of accuracy. It is used to solve initial value problems for differential equations.</p>
+
+        <h3>Key Concepts</h3>
+        <p>The Runge-Kutta method involves calculating intermediate values (slopes) at different stages and combining them to give an estimate of the next value. The RK4 method uses four stages of approximations to compute the next value in the solution, making it more accurate than simpler methods like Euler's method.</p>
+
+        <h3>Viva Questions</h3>
+        <h4>1. What is the Runge-Kutta method?</h4>
+        <p><strong>Answer:</strong> The Runge-Kutta method is a family of iterative methods used to solve ordinary differential equations by approximating the solution at discrete points, using intermediate values to improve accuracy.</p>
+
+        <h4>2. How does the fourth-order Runge-Kutta method work?</h4>
+        <p><strong>Answer:</strong> The fourth-order Runge-Kutta method computes four intermediate slopes at each step and takes a weighted average to estimate the next value. This results in a more accurate solution than simpler methods like Euler's method.</p>
+
+        <h4>3. What are the advantages of the Runge-Kutta method over Euler's method?</h4>
+        <p><strong>Answer:</strong> The Runge-Kutta method provides more accurate results than Euler's method because it uses multiple intermediate slopes, making it more effective for solving ODEs with higher accuracy.</p>
+
+        <h4>4. What are the limitations of the Runge-Kutta method?</h4>
+        <p><strong>Answer:</strong> The Runge-Kutta method can be computationally expensive, especially for large systems of equations. Additionally, it may still introduce errors for highly stiff equations or highly oscillatory solutions.</p>
+
+        <div id="videoBlock11" class="video-section">
+            <h3>How to Solve ODEs using Runge-Kutta Method</h3>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/nyxTdL_4Q-Y" title="YouTube video player"></iframe>
+        </div>
+
+        <h3>Code Example for Runge-Kutta Method in Python</h3>
+        <pre><code>
+import numpy as np
+
+# Function to implement the Runge-Kutta method (RK4)
+def runge_kutta(f, y0, t0, t_end, h):
+    t = np.arange(t0, t_end, h)
+    y = np.zeros(len(t))
+    y[0] = y0
+
+    for i in range(1, len(t)):
+        k1 = h * f(t[i-1], y[i-1])
+        k2 = h * f(t[i-1] + 0.5*h, y[i-1] + 0.5*k1)
+        k3 = h * f(t[i-1] + 0.5*h, y[i-1] + 0.5*k2)
+        k4 = h * f(t[i-1] + h, y[i-1] + k3)
+        
+        y[i] = y[i-1] + (1/6)*(k1 + 2*k2 + 2*k3 + k4)
+
+    return t, y
+
+# Example usage: Solving dy/dt = -2y with initial condition y(0) = 1
+def f(t, y):
+    return -2 * y
+
+t, y = runge_kutta(f, y0=1, t0=0, t_end=5, h=0.1)
+print("Solution of ODE:")
+print(y)
+        </code></pre>
+    </div>
+</li>
+
+        </ul>
+    </section>
+
+    <script>
+        function toggleContent(contentId) {
+            var content = document.getElementById(contentId);
+
+            // Check if content is hidden (display is "none" or initial empty value)
+            if (content.style.display === "none" || content.style.display === "") {
+                content.style.display = "block"; // Show content
+            } else {
+                content.style.display = "none"; // Hide content
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiments List</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+       body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        .navbar {
+            background-color: #0B0425;
+            color: #fff;
+            padding: 15px 20px;
+        }
+
+        .navbar .brand {
+            text-decoration: none;
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .semester1 .section {
+            background-color: #1f2937;
+            padding: 4rem 2rem;
+            margin-top: 4rem;
+            position: relative;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .semester1 .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #f3f4f6;
+            font-weight: 800;
+        }
+
+        .semester1 .practicals-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .semester1 .practicals-list .card {
+            background: linear-gradient(to right, rgb(45, 45, 197),rgba(64, 201, 116, 0.678), rgb(45, 45, 197));
+            border-radius: 0.375rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #f3f4f6;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            text-align: center;
+        }
+
+        .semester1 .practicals-list .card:hover {
+            background-color: #4b5563;
+            transform: scale(1.02);
+        }
+
+        .semester1 .card-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .semester1 .theoretical-content,
+        .semester1 .code-block {
+            display: none;
+            text-align: left;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            background-color: #1e293b;
+            padding: 20px;
+            border-radius: 0.375rem;
+            margin-top: 1rem;
+        }
+
+        .semester1 .theoretical-content h3,
+        .semester1 .theoretical-content h4,
+        .semester1 .theoretical-content h5,
+        .semester1 .theoretical-content p,
+        .semester1 .theoretical-content ul {
+            text-align: left;
+            color: #f3f4f6;
+        }
+
+        .semester1 .theoretical-content h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .semester1 .theoretical-content h4 {
+            font-size: 1.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .semester1 .theoretical-content h5 {
+            font-size: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .semester1 .theoretical-content p {
+            font-size: 1.125rem;
+            margin: 0.5rem 0;
+            line-height: 1.8;
+        }
+
+        .semester1 .theoretical-content ul {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .semester1 .theoretical-content ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .semester1 .code-block {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 0.375rem;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre-wrap;
+        }
+
+        .reveal-button {
+            background-color: #0B0425;
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            font-size: 1.125rem;
+            margin-top: 1rem;
+            transition: background-color 0.3s ease;
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+
+        .reveal-button:hover {
+            background-color: rgb(47, 130, 255);
+        }
+
+        .container {
+            display: inline-block;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2rem;
+            width: 200px;
+            margin-left: auto;
+            margin-right: auto;
+
+        }
+
+        .semester1.section {
+            flex: 1;
+        }
+
+        .video-section {
+            
+            background-color: #1f2937;
+            padding: 2rem;
+            border-radius: 0.375rem;
+            text-align:left;
+        }
+        .video-section2 {
+          
+            background-color: #1f2937;
+            padding: 2rem;
+            border-radius: 0.375rem;
+            text-align:right;
+        }
+
+        .video-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #f3f4f6;
+            font-weight: 700;
+        }
+
+        .video-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .video-container iframe {
+            border-radius: 0.375rem;
+        }
+        .download-button {
+            width: 30vw;
+            display: inline-block;
+            padding: 1vh 2vh;
+            font-size: 3vh;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            margin-bottom: 3vh;
+        }
+
+        .download-button:hover {
+            background-color: #0056b3;
+        }
+
+        .INFO
+        {
+            padding: 1vh 2vh;
+            font-size: 4vh;
+            display: block;
+            margin-bottom: 2vh;
+            color: rgb(255, 255, 255);
+            align-items: center;
+            justify-content: center;
+            background-color: #0056b3;
+            border-radius: 10px;
+            max-width: 50vw;
+            max-height: 20vw;
+            margin: 4vh auto;
+        }
+
+        pre1 .output
+        {
+            display: inline-block;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="../semestershtml/semester7.html" class="brand">Back to Subjects</a>
+        </div>
+    </nav>
+
+    <!-- Experiments Section -->
+    <section class="semester1 section">
+        <h1 class="section-title">Electrical Machines — I Lab </h1>
+
+    <a href="files/sem7.pdf" download="ALL.pdf" class="download-button">Download PDF</a>
+    <div class="INFO">
+
+        Video + Theory 
+        
+    </div>
+
+        <ul class="practicals-list">
+            <li class="card">
+                <h2 class="card-title">1. To Conduct No-load and Blocked Rotor Test on Three-Phase Squirrel Induction Motor and Draw the Equivalent Circuit</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent1')">Toggle Content</button>
+                <div id="theoryContent1" class="theoretical-content">
+                    <h3>Overview of No-load and Blocked Rotor Test</h3>
+                    <p>The no-load and blocked rotor tests are used to determine the equivalent circuit parameters of a three-phase squirrel cage induction motor. The no-load test helps determine the core loss and frictional losses, while the blocked rotor test helps in determining the reactances of the motor's stator and rotor.</p>
+            
+                    <h3>Key Concepts</h3>
+                    <ul>
+                        <li><strong>No-load Test:</strong> Conducted at rated voltage, with the motor running at no load to determine core loss and mechanical losses.</li>
+                        <li><strong>Blocked Rotor Test:</strong> The rotor is blocked (not allowed to rotate), and the current and voltage are measured to find the motor's reactance.</li>
+                    </ul>
+            
+                    <h3>Viva Questions</h3>
+                    <h4>1. Why is the blocked rotor test performed?</h4>
+                    <p><strong>Answer:</strong> The blocked rotor test is performed to determine the synchronous reactance of the motor and to obtain information about the stator and rotor impedance under starting conditions.</p>
+            
+                    <h4>2. What is the significance of the no-load test?</h4>
+                    <p><strong>Answer:</strong> The no-load test is used to determine the core losses, mechanical losses, and the no-load current of the motor, which are essential to calculate the total losses during normal operation.</p>
+            
+                    <div id="videoBlock1" class="video-section">
+                        <h3>How to Perform No-load and Blocked Rotor Test</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/nyxTdL_4Q-Y" title="YouTube video player"></iframe>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="card">
+                <h2 class="card-title">2. To Conduct the Load Test on Three-Phase Squirrel Cage Induction Motor</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent2')">Toggle Content</button>
+                <div id="theoryContent2" class="theoretical-content">
+                    <h3>Overview of Load Test on Three-Phase Squirrel Cage Induction Motor</h3>
+                    <p>The load test on a three-phase squirrel cage induction motor involves applying different load conditions and measuring various parameters, such as torque, output power, efficiency, input power factor, and slip. The results can then be used to plot performance curves, including efficiency vs. output power, torque vs. output power, and more.</p>
+            
+                    <h3>Key Concepts</h3>
+                    <ul>
+                        <li><strong>Torque:</strong> Torque is calculated from the measured values of input power and speed.</li>
+                        <li><strong>Efficiency:</strong> Efficiency is determined by dividing output power by the input power, accounting for losses.</li>
+                        <li><strong>Slip:</strong> Slip is calculated using the formula: Slip = (Ns - Nr) / Ns, where Ns is the synchronous speed, and Nr is the rotor speed.</li>
+                    </ul>
+            
+                    <h3>Viva Questions</h3>
+                    <h4>1. How is torque calculated in a load test?</h4>
+                    <p><strong>Answer:</strong> Torque is calculated using the formula: Torque = (Power × 60) / (2π × speed).</p>
+            
+                    <h4>2. How do you determine the efficiency of the motor?</h4>
+                    <p><strong>Answer:</strong> Efficiency is calculated by dividing the output power by the input power: Efficiency = (Output Power / Input Power) × 100.</p>
+            
+                    <h4>3. What is the slip of an induction motor?</h4>
+                    <p><strong>Answer:</strong> Slip is the difference between the synchronous speed and the actual rotor speed, expressed as a percentage of the synchronous speed.</p>
+            
+                    <div id="videoBlock2" class="video-section">
+                        <h3>How to Conduct Load Test on Three-Phase Induction Motor</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/nyxTdL_4Q-Y" title="YouTube video player"></iframe>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="card">
+                <h2 class="card-title">3. To Conduct the Load Test on Three-Phase Slip Ring Induction Motor</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent3')">Toggle Content</button>
+                <div id="theoryContent3" class="theoretical-content">
+                    <h3>Overview of Load Test on Three-Phase Slip Ring Induction Motor</h3>
+                    <p>Similar to the squirrel cage motor, the slip ring induction motor's load test involves measuring various parameters under different load conditions, such as efficiency, torque, power factor, and slip. However, the slip ring motor offers improved starting torque and can be controlled with external resistors for better speed regulation.</p>
+            
+                    <h3>Key Concepts</h3>
+                    <ul>
+                        <li><strong>Efficiency and Power Factor:</strong> These are calculated based on the power readings at different load points.</li>
+                        <li><strong>Slip:</strong> The slip is also calculated for the slip ring motor using the same formula as for squirrel cage motors.</li>
+                    </ul>
+            
+                    <h3>Viva Questions</h3>
+                    <h4>1. What is the difference between squirrel cage and slip ring motors?</h4>
+                    <p><strong>Answer:</strong> A slip ring motor uses external resistors in its rotor circuit, which allows for better speed regulation and higher starting torque compared to a squirrel cage motor.</p>
+            
+                    <h4>2. How is efficiency determined in a load test?</h4>
+                    <p><strong>Answer:</strong> Efficiency is determined by dividing the output power by the input power, accounting for losses in the system.</p>
+            
+                    <div id="videoBlock3" class="video-section">
+                        <h3>How to Conduct Load Test on Three-Phase Slip Ring Induction Motor</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/nyxTdL_4Q-Y" title="YouTube video player"></iframe>
+                    </div>
+                </div>
+            </li>
+            
+
+            <li class="card">
+                <h2 class="card-title">1. To Conduct No-load and Blocked Rotor Test on Three-Phase Squirrel Induction Motor and Draw the Equivalent Circuit</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent1')">Toggle Content</button>
+                <div id="theoryContent1" class="theoretical-content">
+                    <h3>Overview of No-load and Blocked Rotor Test</h3>
+                    <p>The no-load and blocked rotor tests are used to determine the equivalent circuit parameters of a three-phase squirrel cage induction motor. The no-load test helps determine the core loss and frictional losses, while the blocked rotor test helps in determining the reactances of the motor's stator and rotor.</p>
+            
+                    <h3>Key Concepts</h3>
+                    <ul>
+                        <li><strong>No-load Test:</strong> Conducted at rated voltage, with the motor running at no load to determine core loss and mechanical losses.</li>
+                        <li><strong>Blocked Rotor Test:</strong> The rotor is blocked (not allowed to rotate), and the current and voltage are measured to find the motor's reactance.</li>
+                    </ul>
+            
+                    <h3>Viva Questions</h3>
+                    <h4>1. Why is the blocked rotor test performed?</h4>
+                    <p><strong>Answer:</strong> The blocked rotor test is performed to determine the synchronous reactance of the motor and to obtain information about the stator and rotor impedance under starting conditions.</p>
+            
+                    <h4>2. What is the significance of the no-load test?</h4>
+                    <p><strong>Answer:</strong> The no-load test is used to determine the core losses, mechanical losses, and the no-load current of the motor, which are essential to calculate the total losses during normal operation.</p>
+            
+                    <div id="videoBlock1" class="video-section">
+                        <h3>How to Perform No-load and Blocked Rotor Test</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/nyxTdL_4Q-Y" title="YouTube video player"></iframe>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="card">
+                <h2 class="card-title">2. To Conduct the Load Test on Three-Phase Squirrel Cage Induction Motor</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent2')">Toggle Content</button>
+                <div id="theoryContent2" class="theoretical-content">
+                    <h3>Overview of Load Test on Three-Phase Squirrel Cage Induction Motor</h3>
+                    <p>The load test on a three-phase squirrel cage induction motor involves applying different load conditions and measuring various parameters, such as torque, output power, efficiency, input power factor, and slip. The results can then be used to plot performance curves, including efficiency vs. output power, torque vs. output power, and more.</p>
+            
+                    <h3>Key Concepts</h3>
+                    <ul>
+                        <li><strong>Torque:</strong> Torque is calculated from the measured values of input power and speed.</li>
+                        <li><strong>Efficiency:</strong> Efficiency is determined by dividing output power by the input power, accounting for losses.</li>
+                        <li><strong>Slip:</strong> Slip is calculated using the formula: Slip = (Ns - Nr) / Ns, where Ns is the synchronous speed, and Nr is the rotor speed.</li>
+                    </ul>
+            
+                    <h3>Viva Questions</h3>
+                    <h4>1. How is torque calculated in a load test?</h4>
+                    <p><strong>Answer:</strong> Torque is calculated using the formula: Torque = (Power × 60) / (2π × speed).</p>
+            
+                    <h4>2. How do you determine the efficiency of the motor?</h4>
+                    <p><strong>Answer:</strong> Efficiency is calculated by dividing the output power by the input power: Efficiency = (Output Power / Input Power) × 100.</p>
+            
+                    <h4>3. What is the slip of an induction motor?</h4>
+                    <p><strong>Answer:</strong> Slip is the difference between the synchronous speed and the actual rotor speed, expressed as a percentage of the synchronous speed.</p>
+            
+                    <div id="videoBlock2" class="video-section">
+                        <h3>How to Conduct Load Test on Three-Phase Induction Motor</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/nyxTdL_4Q-Y" title="YouTube video player"></iframe>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="card">
+                <h2 class="card-title">3. To Conduct the Load Test on Three-Phase Slip Ring Induction Motor</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent3')">Toggle Content</button>
+                <div id="theoryContent3" class="theoretical-content">
+                    <h3>Overview of Load Test on Three-Phase Slip Ring Induction Motor</h3>
+                    <p>Similar to the squirrel cage motor, the slip ring induction motor's load test involves measuring various parameters under different load conditions, such as efficiency, torque, power factor, and slip. However, the slip ring motor offers improved starting torque and can be controlled with external resistors for better speed regulation.</p>
+            
+                    <h3>Key Concepts</h3>
+                    <ul>
+                        <li><strong>Efficiency and Power Factor:</strong> These are calculated based on the power readings at different load points.</li>
+                        <li><strong>Slip:</strong> The slip is also calculated for the slip ring motor using the same formula as for squirrel cage motors.</li>
+                    </ul>
+            
+                    <h3>Viva Questions</h3>
+                    <h4>1. What is the difference between squirrel cage and slip ring motors?</h4>
+                    <p><strong>Answer:</strong> A slip ring motor uses external resistors in its rotor circuit, which allows for better speed regulation and higher starting torque compared to a squirrel cage motor.</p>
+            
+                    <h4>2. How is efficiency determined in a load test?</h4>
+                    <p><strong>Answer:</strong> Efficiency is determined by dividing the output power by the input power, accounting for losses in the system.</p>
+            
+                    <div id="videoBlock3" class="video-section">
+                        <h3>How to Conduct Load Test on Three-Phase Slip Ring Induction Motor</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/nyxTdL_4Q-Y" title="YouTube video player"></iframe>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="card">
+                <h2 class="card-title">4. To Study the Different Methods Available in Laboratory for Starting Three-Phase Induction Motor and Compare Them</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent4')">Toggle Content</button>
+                <div id="theoryContent4" class="theoretical-content">
+                    <h3>Overview of Starting Methods for Three-Phase Induction Motors</h3>
+                    <p>Various methods are used to start three-phase induction motors to limit the inrush current. These include Direct On-Line (DOL), Star-Delta, Auto-Transformer, and Resistance Starting methods. Each method has different characteristics and is selected based on the motor's size and the application.</p>
+            
+                    <h3>Key Concepts</h3>
+                    <ul>
+                        <li><strong>DOL Starting:</strong> The simplest method, where the motor is connected directly to the supply.</li>
+                        <li><strong>Star-Delta Starting:</strong> Reduces starting current by initially connecting the motor in star and then switching to delta once it reaches full speed.</li>
+                        <li><strong>Auto-Transformer:</strong> Uses a step-down transformer to reduce the voltage supplied to the motor during starting.</li>
+                        <li><strong>Resistance Starting:</strong> Involves adding resistances in series with the motor windings to limit the starting current.</li>
+                    </ul>
+            
+                    <h3>Viva Questions</h3>
+                    <h4>1. What is the advantage of Star-Delta starting?</h4>
+                    <p><strong>Answer:</strong> The Star-Delta starting method reduces the inrush current and starting torque, making it suitable for motors that do not require high starting torque.</p>
+            
+                    <h4>2. When is Auto-Transformer starting used?</h4>
+                    <p><strong>Answer:</strong> Auto-Transformer starting is used when the motor requires a high starting torque, as it allows for a higher voltage to be applied to the motor after startup.</p>
+            
+                    <div id="videoBlock4" class="video-section">
+                        <h3>How to Perform Different Starting Methods for Three-Phase Induction Motors</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/nyxTdL_4Q-Y" title="YouTube video player"></iframe>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="card">
+                <h2 class="card-title">5. To Find the Effect of Variation of Supply Voltage and Frequency on the Speed of Three-Phase Induction Motor</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent5')">Toggle Content</button>
+                <div id="theoryContent5" class="theoretical-content">
+                    <h3>Effect of Supply Voltage and Frequency on Motor Speed</h3>
+                    <p>The speed of a three-phase induction motor is primarily determined by the supply frequency and the number of poles in the motor. However, variations in supply voltage and frequency can have a significant effect on the motor's operating speed. By adjusting the supply voltage and frequency, the motor speed can be controlled in some cases.</p>
+            
+                    <h3>Key Concepts</h3>
+                    <ul>
+                        <li><strong>Speed and Frequency:</strong> The speed of the motor is inversely proportional to the supply frequency: Speed = (120 × Frequency) / Number of Poles.</li>
+                        <li><strong>Voltage and Speed:</strong> A decrease in voltage can result in reduced torque and lower efficiency but does not significantly affect the motor speed unless voltage is reduced too much.</li>
+                    </ul>
+            
+                    <h3>Viva Questions</h3>
+                    <h4>1. How does supply voltage affect the speed of an induction motor?</h4>
+                    <p><strong>Answer:</strong> The speed of an induction motor is primarily dependent on the supply frequency and the number of poles. The supply voltage primarily affects the torque and efficiency but not the speed directly.</p>
+            
+                    <h4>2. What is the relationship between frequency and motor speed?</h4>
+                    <p><strong>Answer:</strong> The motor speed is inversely proportional to the supply frequency, so when the frequency increases, the speed of the motor increases.</p>
+            
+                    <div id="videoBlock5" class="video-section">
+                        <h3>How Variation in Voltage and Frequency Affects the Speed of Three-Phase Induction Motors</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/nyxTdL_4Q-Y" title="YouTube video player"></iframe>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="card">
+                <h2 class="card-title">6. a) Perform No Load and Short Circuit Test on a Three-Phase Synchronous Generator</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent6a')">Toggle Content</button>
+                <div id="theoryContent6a" class="theoretical-content">
+                    <h3>Overview of No Load and Short Circuit Test on a Synchronous Generator</h3>
+                    <p>In the no-load test, the generator is run at its rated speed, and the output voltage is measured without any external load. The short-circuit test involves applying a short circuit on the generator terminals to determine its short-circuit current and the synchronous reactance.</p>
+            
+                    <h3>Key Concepts</h3>
+                    <ul>
+                        <li><strong>No-load test:</strong> Performed to determine the no-load losses and open-circuit voltage of the generator.</li>
+                        <li><strong>Short-circuit test:</strong> Performed to find the synchronous reactance of the generator by shorting its terminals and measuring the resulting current.</li>
+                    </ul>
+            
+                    <h3>Viva Questions</h3>
+                    <h4>1. What is the purpose of the no-load test on a synchronous generator?</h4>
+                    <p><strong>Answer:</strong> The no-load test is conducted to determine the open-circuit voltage, and it helps in calculating the synchronous reactance of the generator.</p>
+            
+                    <h4>2. Why is the short-circuit test important?</h4>
+                    <p><strong>Answer:</strong> The short-circuit test is essential for determining the synchronous reactance of the generator and its ability to withstand short-circuit conditions.</p>
+            
+                    <div id="videoBlock6a" class="video-section">
+                        <h3>No Load and Short Circuit Test on a Synchronous Generator</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/nyxTdL_4Q-Y" title="YouTube video player"></iframe>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="card">
+                <h2 class="card-title">b) Measure the Resistance of the Stator Windings</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent6b')">Toggle Content</button>
+                <div id="theoryContent6b" class="theoretical-content">
+                    <h3>Overview of Measuring the Resistance of Stator Windings</h3>
+                    <p>Measuring the resistance of the stator windings is critical to understand the losses due to resistance. This resistance can be measured using an ohmmeter, and it helps in calculating the copper losses during the operation of the synchronous generator.</p>
+            
+                    <h3>Key Concepts</h3>
+                    <ul>
+                        <li><strong>Stator Resistance:</strong> The resistance of the stator windings contributes to copper losses in the generator.</li>
+                        <li><strong>Loss Calculation:</strong> The stator resistance is used in calculating the generator's efficiency and overall performance.</li>
+                    </ul>
+            
+                    <h3>Viva Questions</h3>
+                    <h4>1. Why is it necessary to measure the resistance of the stator windings?</h4>
+                    <p><strong>Answer:</strong> Measuring the resistance is important to calculate the copper losses and estimate the generator's efficiency during operation.</p>
+            
+                    <h4>2. What effect does stator resistance have on the efficiency of the synchronous generator?</h4>
+                    <p><strong>Answer:</strong> Increased stator resistance results in higher copper losses, which reduces the overall efficiency of the synchronous generator.</p>
+            
+                    <div id="videoBlock6b" class="video-section">
+                        <h3>Measuring the Stator Resistance of a Synchronous Generator</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/nyxTdL_4Q-Y" title="YouTube video player"></iframe>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="card">
+                <h2 class="card-title">c) Find the Voltage Regulation at Full Load</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent6c')">Toggle Content</button>
+                <div id="theoryContent6c" class="theoretical-content">
+                    <h3>Overview of Voltage Regulation at Full Load</h3>
+                    <p>Voltage regulation is the difference in voltage at no load and full load. It is essential to understand the performance of a synchronous generator under load conditions. This can be calculated using the synchronous impedance method, which considers the effects of both reactance and resistance on voltage drop.</p>
+            
+                    <h3>Key Concepts</h3>
+                    <ul>
+                        <li><strong>Voltage Regulation:</strong> Voltage regulation is defined as the difference in terminal voltage at no load and full load, expressed as a percentage of the full load voltage.</li>
+                        <li><strong>Synchronous Impedance Method:</strong> This method calculates voltage regulation by considering both the resistance and reactance of the generator.</li>
+                    </ul>
+            
+                    <h3>Viva Questions</h3>
+                    <h4>1. How do you calculate voltage regulation?</h4>
+                    <p><strong>Answer:</strong> Voltage regulation is calculated using the formula: Voltage Regulation = [(No-load Voltage - Full-load Voltage) / Full-load Voltage] × 100.</p>
+            
+                    <h4>2. What is the significance of voltage regulation?</h4>
+                    <p><strong>Answer:</strong> Voltage regulation indicates how much the voltage decreases as the generator goes from no load to full load, providing insights into the generator’s ability to maintain a stable voltage under varying load conditions.</p>
+            
+                    <div id="videoBlock6c" class="video-section">
+                        <h3>How to Calculate Voltage Regulation of a Synchronous Generator</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/nyxTdL_4Q-Y" title="YouTube video player"></iframe>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="card">
+                <h2 class="card-title">7. To Synchronize a Three-Phase Synchronous Generator with the Infinite Bus Bar (Main Supply)</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent7')">Toggle Content</button>
+                <div id="theoryContent7" class="theoretical-content">
+                    <h3>Overview of Synchronizing a Generator with an Infinite Bus Bar</h3>
+                    <p>Synchronizing a synchronous generator with an infinite bus bar is crucial for connecting the generator to the main power grid. The process involves matching the generator’s voltage, frequency, and phase sequence with the bus bar before paralleling them. This ensures safe and efficient operation.</p>
+            
+                    <h3>Key Concepts</h3>
+                    <ul>
+                        <li><strong>Synchronization:</strong> The process of matching the generator's electrical characteristics with the main supply to ensure smooth parallel operation.</li>
+                        <li><strong>Phase Sequence:</strong> The phase sequence of the generator must match with that of the bus bar to avoid damaging the equipment.</li>
+                    </ul>
+            
+                    <h3>Viva Questions</h3>
+                    <h4>1. Why is synchronization necessary before paralleling a generator with the grid?</h4>
+                    <p><strong>Answer:</strong> Synchronization ensures that the generator operates at the same voltage, frequency, and phase as the grid, preventing electrical faults and damage to both the generator and the power system.</p>
+            
+                    <h4>2. What are the critical parameters to check before synchronizing a generator?</h4>
+                    <p><strong>Answer:</strong> The critical parameters include voltage, frequency, and phase sequence of the generator and the bus bar.</p>
+            
+                    <div id="videoBlock7" class="video-section">
+                        <h3>How to Synchronize a Three-Phase Synchronous Generator</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/nyxTdL_4Q-Y" title="YouTube video player"></iframe>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="card">
+                <h2 class="card-title">8. To Start a Synchronous Motor and Study the Effect of Variation of Field Current on Stator Current and Power Factor</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent8')">Toggle Content</button>
+                <div id="theoryContent8" class="theoretical-content">
+                    <h3>Overview of Starting a Synchronous Motor and Studying the Effect of Field Current</h3>
+                    <p>In a synchronous motor, varying the field current affects the stator current and power factor. By adjusting the field current, the motor's power factor can be improved or worsened. This experiment involves studying the motor’s V and inverted V curves and analyzing its behavior under different load conditions.</p>
+            
+                    <h3>Key Concepts</h3>
+                    <ul>
+                        <li><strong>Field Current:</strong> The field current controls the magnetic flux and, consequently, the power factor of the synchronous motor.</li>
+                        <li><strong>V and Inverted V Curves:</strong> These curves show the relationship between field current, stator current, and power factor.</li>
+                    </ul>
+            
+                    <h3>Viva Questions</h3>
+                    <h4>1. How does varying the field current affect the power factor of a synchronous motor?</h4>
+                    <p><strong>Answer:</strong> Varying the field current changes the motor's excitation, which directly affects the power factor. More excitation (higher field current) improves the power factor, while less excitation (lower field current) degrades the power factor.</p>
+            
+                    <h4>2. What are V and inverted V curves?</h4>
+                    <p><strong>Answer:</strong> V curves show the relationship between field current and stator current, while inverted V curves represent the relationship between field current and power factor.</p>
+            
+                    <div id="videoBlock8" class="video-section">
+                        <h3>How Field Current Affects Synchronous Motor Performance</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/nyxTdL_4Q-Y" title="YouTube video player"></iframe>
+                    </div>
+                </div>
+            </li>
+            
+            
+            
+        </ul>
+    </section>
+
+    <script>
+        function toggleContent(contentId) {
+            var content = document.getElementById(contentId);
+
+            // Check if content is hidden (display is "none" or initial empty value)
+            if (content.style.display === "none" || content.style.display === "") {
+                content.style.display = "block"; // Show content
+            } else {
+                content.style.display = "none"; // Hide content
+            }
+        }
+    </script>
+</body>
+
+</html>

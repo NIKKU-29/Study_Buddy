@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiments List</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+       body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        .navbar {
+            background-color: #0B0425;
+            color: #fff;
+            padding: 15px 20px;
+        }
+
+        .navbar .brand {
+            text-decoration: none;
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .semester1 .section {
+            background-color: #1f2937;
+            padding: 4rem 2rem;
+            margin-top: 4rem;
+            position: relative;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .semester1 .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #f3f4f6;
+            font-weight: 800;
+        }
+
+        .semester1 .practicals-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .semester1 .practicals-list .card {
+            background: linear-gradient(to right, rgb(45, 45, 197),rgba(64, 201, 116, 0.678), rgb(45, 45, 197));
+            border-radius: 0.375rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #f3f4f6;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            text-align: center;
+        }
+
+        .semester1 .practicals-list .card:hover {
+            background-color: #4b5563;
+            transform: scale(1.02);
+        }
+
+        .semester1 .card-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .semester1 .theoretical-content,
+        .semester1 .code-block {
+            display: none;
+            text-align: left;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            background-color: #1e293b;
+            padding: 20px;
+            border-radius: 0.375rem;
+            margin-top: 1rem;
+        }
+
+        .semester1 .theoretical-content h3,
+        .semester1 .theoretical-content h4,
+        .semester1 .theoretical-content h5,
+        .semester1 .theoretical-content p,
+        .semester1 .theoretical-content ul {
+            text-align: left;
+            color: #f3f4f6;
+        }
+
+        .semester1 .theoretical-content h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .semester1 .theoretical-content h4 {
+            font-size: 1.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .semester1 .theoretical-content h5 {
+            font-size: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .semester1 .theoretical-content p {
+            font-size: 1.125rem;
+            margin: 0.5rem 0;
+            line-height: 1.8;
+        }
+
+        .semester1 .theoretical-content ul {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .semester1 .theoretical-content ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .semester1 .code-block {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 0.375rem;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre-wrap;
+        }
+
+        .reveal-button {
+            background-color: #0B0425;
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            font-size: 1.125rem;
+            margin-top: 1rem;
+            transition: background-color 0.3s ease;
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+
+        .reveal-button:hover {
+            background-color: rgb(47, 130, 255);
+        }
+
+        .container {
+            display: inline-block;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2rem;
+            width: 200px;
+            margin-left: auto;
+            margin-right: auto;
+
+        }
+
+        .semester1.section {
+            flex: 1;
+        }
+
+        .video-section {
+            
+            background-color: #1f2937;
+            padding: 2rem;
+            border-radius: 0.375rem;
+            text-align:left;
+        }
+        .video-section2 {
+          
+            background-color: #1f2937;
+            padding: 2rem;
+            border-radius: 0.375rem;
+            text-align:right;
+        }
+
+        .video-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #f3f4f6;
+            font-weight: 700;
+        }
+
+        .video-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .video-container iframe {
+            border-radius: 0.375rem;
+        }
+        .download-button {
+            width: 30vw;
+            display: inline-block;
+            padding: 1vh 2vh;
+            font-size: 3vh;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            margin-bottom: 3vh;
+        }
+
+        .download-button:hover {
+            background-color: #0056b3;
+        }
+
+        .INFO
+        {
+            padding: 1vh 2vh;
+            font-size: 4vh;
+            display: block;
+            margin-bottom: 2vh;
+            color: rgb(255, 255, 255);
+            align-items: center;
+            justify-content: center;
+            background-color: #0056b3;
+            border-radius: 10px;
+            max-width: 50vw;
+            max-height: 20vw;
+            margin: 4vh auto;
+        }
+
+        pre1 .output
+        {
+            display: inline-block;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="../semestershtml/semester7.html" class="brand">Back to Subjects</a>
+        </div>
+    </nav>
+
+    <!-- Experiments Section -->
+    <section class="semester1 section">
+        <h1 class="section-title">Electronics — I Lab </h1>
+
+    <a href="files/sem7.pdf" download="ALL.pdf" class="download-button">Download PDF</a>
+    <div class="INFO">
+
+        Video + Theory 
+        
+    </div>
+
+        <ul class="practicals-list">
+            <li class="card">
+                <h2 class="card-title">1. To Plot V-I Characteristics of a Semiconductor Diode & Calculate Static & Dynamic Resistance</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent1')">Toggle Content</button>
+                <div id="theoryContent1" class="theoretical-content">
+                    <h3>Overview of V-I Characteristics of Semiconductor Diode</h3>
+                    <p>The V-I characteristics of a semiconductor diode show the relationship between the voltage applied across the diode and the current that flows through it. The static resistance is the ratio of voltage to current in the forward region, and dynamic resistance is the slope of the curve in the forward region.</p>
+                    
+                    <h3>Key Concepts</h3>
+                    <p>The V-I characteristic curve of a diode can be used to determine static and dynamic resistance. Static resistance is calculated by dividing the voltage by the current, while dynamic resistance is the inverse of the slope of the curve.</p>
+            
+                    <h3>Viva Questions</h3>
+                    <h4>1. What is the V-I characteristic of a semiconductor diode?</h4>
+                    <p><strong>Answer:</strong> The V-I characteristic of a diode shows how the current varies with the applied voltage, with a steep rise in current in the forward direction and almost no current in the reverse direction.</p>
+            
+                    <h4>2. How is dynamic resistance of a diode calculated?</h4>
+                    <p><strong>Answer:</strong> Dynamic resistance is calculated as the slope of the V-I curve in the forward direction and is given by <code>R<sub>d</sub> = dV/dI</code>.</p>
+            
+                    <div id="videoBlock1" class="video-section">
+                        <h3>How to Plot V-I Characteristics of a Diode</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/nyxTdL_4Q-Y" title="YouTube video player"></iframe>
+                    </div>
+            
+                  
+                </div>
+            </li>
+            
+            <li class="card">
+                <h2 class="card-title">2. To Study the Reverse Characteristics of Zener Diode</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent2')">Toggle Content</button>
+                <div id="theoryContent2" class="theoretical-content">
+                    <h3>Overview of Zener Diode Reverse Characteristics</h3>
+                    <p>The reverse characteristics of a Zener diode show how the current increases sharply after reaching the Zener breakdown voltage. Below the breakdown voltage, the current is negligible, but after breakdown, the diode conducts in reverse direction.</p>
+            
+                    <h3>Key Concepts</h3>
+                    <p>The reverse breakdown voltage is a key parameter for Zener diodes. The current in reverse bias remains small until the Zener voltage is reached, after which the current increases rapidly without significant increase in voltage.</p>
+            
+                    <h3>Viva Questions</h3>
+                    <h4>1. What happens in the reverse bias of a Zener diode?</h4>
+                    <p><strong>Answer:</strong> In reverse bias, a Zener diode conducts little current until the reverse breakdown voltage is reached, after which the current increases sharply.</p>
+            
+                    <h4>2. What is the Zener breakdown voltage?</h4>
+                    <p><strong>Answer:</strong> The Zener breakdown voltage is the reverse voltage at which the Zener diode starts to conduct in reverse bias.</p>
+            
+                    <div id="videoBlock2" class="video-section">
+                        <h3>Study of Reverse Characteristics of Zener Diode</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/nyxTdL_4Q-Y" title="YouTube video player"></iframe>
+                    </div>
+            
+          
+                </div>
+            </li>
+
+            <li class="card">
+                <h2 class="card-title">3. To Study the Rectifier Circuit (With and Without Filter)</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent3')">Toggle Content</button>
+                <div id="theoryContent3" class="theoretical-content">
+                    <h3>Overview of Rectifiers</h3>
+                    <p>Rectifiers are circuits that convert alternating current (AC) to direct current (DC). Different types of rectifiers are used in various applications. A half-wave rectifier only allows one half-cycle of AC, while a full-wave rectifier allows both half-cycles, improving efficiency. Filters are used to smooth out the ripples in the DC output.</p>
+            
+                    <h3>Key Concepts</h3>
+                    <ul>
+                        <li><strong>Half-Wave Rectifier:</strong> Uses one diode and only rectifies one half-cycle of AC.</li>
+                        <li><strong>Centre-Tapped Rectifier:</strong> Uses two diodes and provides full-wave rectification using a centre-tapped transformer.</li>
+                        <li><strong>Bridge Rectifier:</strong> Uses four diodes in a bridge configuration to provide full-wave rectification without a centre-tapped transformer.</li>
+                    </ul>
+            
+                    <h3>Viva Questions</h3>
+                    <h4>1. What is the main difference between a half-wave and full-wave rectifier?</h4>
+                    <p><strong>Answer:</strong> A half-wave rectifier rectifies only one half of the AC cycle, while a full-wave rectifier rectifies both halves, providing better efficiency.</p>
+            
+                    <h4>2. How does a bridge rectifier differ from a centre-tapped rectifier?</h4>
+                    <p><strong>Answer:</strong> A bridge rectifier uses four diodes and does not require a centre-tapped transformer, while a centre-tapped rectifier uses two diodes and requires a centre-tapped transformer.</p>
+            
+                    <div id="videoBlock3" class="video-section">
+                        <h3>Rectifier Circuits (With and Without Filter)</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/nyxTdL_4Q-Y" title="YouTube video player"></iframe>
+                    </div>
+            
+            
+                </div>
+            </li>
+
+            <li class="card">
+                <h2 class="card-title">4. To Plot Input & Output Characteristics CB/CE/CC Transistor</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent4')">Toggle Content</button>
+                <div id="theoryContent4" class="theoretical-content">
+                    <h3>Overview of Input & Output Characteristics</h3>
+                    <p>The input and output characteristics of a transistor show the behavior of current and voltage in different configurations: Common Base (CB), Common Emitter (CE), and Common Collector (CC). These characteristics are useful in understanding the transistor's switching and amplification behavior.</p>
+            
+                    <h3>Key Concepts</h3>
+                    <ul>
+                        <li><strong>CB Configuration:</strong> The base is common to both input and output circuits.</li>
+                        <li><strong>CE Configuration:</strong> The emitter is common to both input and output circuits.</li>
+                        <li><strong>CC Configuration:</strong> The collector is common to both input and output circuits.</li>
+                    </ul>
+            
+                    <h3>Viva Questions</h3>
+                    <h4>1. What is the difference between CB, CE, and CC configurations?</h4>
+                    <p><strong>Answer:</strong> CB has the base common to both input and output, CE has the emitter common, and CC has the collector common.</p>
+            
+                    <h4>2. What does the output characteristic curve of a transistor represent?</h4>
+                    <p><strong>Answer:</strong> It shows the relationship between output current and output voltage for different levels of input current in a given configuration.</p>
+            
+                    <div id="videoBlock4" class="video-section">
+                        <h3>Input & Output Characteristics of Transistor</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/nyxTdL_4Q-Y" title="YouTube video player"></iframe>
+                    </div>
+            
+            
+                </div>
+            </li>
+            
+            
+            <li class="card">
+                <h2 class="card-title">5. Realization of Basic Gates</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent5')">Toggle Content</button>
+                <div id="theoryContent5" class="theoretical-content">
+                    <h3>Overview of Basic Logic Gates</h3>
+                    <p>Logic gates are the basic building blocks of digital circuits. These gates perform logical operations on one or more inputs to produce an output. The basic gates include AND, OR, NOT, NAND, NOR, XOR, and XNOR.</p>
+            
+                    <h3>Key Concepts</h3>
+                    <ul>
+                        <li><strong>AND Gate:</strong> Produces a high output (1) only if all inputs are high.</li>
+                        <li><strong>OR Gate:</strong> Produces a high output (1) if at least one input is high.</li>
+                        <li><strong>NOT Gate:</strong> Inverts the input (if input is 1, output is 0 and vice versa).</li>
+                        <li><strong>NAND, NOR, XOR, and XNOR Gates:</strong> These gates are combinations of basic gates with negation and exclusivity conditions.</li>
+                    </ul>
+            
+                    <h3>Viva Questions</h3>
+                    <h4>1. What are the basic logic gates?</h4>
+                    <p><strong>Answer:</strong> The basic logic gates are AND, OR, NOT, NAND, NOR, XOR, and XNOR.</p>
+            
+                    <h4>2. How are basic gates realized using NAND and NOR gates?</h4>
+                    <p><strong>Answer:</strong> Any logic gate can be realized using NAND and NOR gates. For example, an AND gate can be realized using a NAND gate followed by a NOT gate (inverter).</p>
+            
+                    <div id="videoBlock5" class="video-section">
+                        <h3>Realization of Basic Gates Using NAND & NOR</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/nyxTdL_4Q-Y" title="YouTube video player"></iframe>
+                    </div>
+            
+                  
+                </div>
+            </li>
+            
+            <li class="card">
+                <h2 class="card-title">6. Implementation of Boolean Functions (Two or Three Variables)</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent6')">Toggle Content</button>
+                <div id="theoryContent6" class="theoretical-content">
+                    <h3>Overview of Boolean Functions</h3>
+                    <p>Boolean functions are used to represent logic circuits with variables. These functions can be represented in terms of AND, OR, and NOT operations. Boolean algebra simplifies these functions and helps design more efficient digital circuits.</p>
+            
+                    <h3>Key Concepts</h3>
+                    <ul>
+                        <li><strong>Two-variable Boolean functions:</strong> Functions like A AND B, A OR B, etc.</li>
+                        <li><strong>Three-variable Boolean functions:</strong> Functions like A AND B AND C, A OR B OR C, etc.</li>
+                        <li><strong>Boolean Algebra:</strong> A set of rules for simplifying expressions, such as De Morgan’s laws, distributive laws, etc.</li>
+                    </ul>
+            
+                    <h3>Viva Questions</h3>
+                    <h4>1. What is Boolean algebra used for?</h4>
+                    <p><strong>Answer:</strong> Boolean algebra is used to simplify and analyze logical expressions and design digital circuits.</p>
+            
+                    <h4>2. How can a Boolean function be implemented with logic gates?</h4>
+                    <p><strong>Answer:</strong> A Boolean function can be implemented by expressing it in terms of AND, OR, and NOT operations and then building a circuit with corresponding logic gates.</p>
+            
+                    <div id="videoBlock6" class="video-section">
+                        <h3>Implementation of Boolean Functions</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/nyxTdL_4Q-Y" title="YouTube video player"></iframe>
+                    </div>
+            
+                 
+                </div>
+            </li>
+            
+
+            <li class="card">
+                <h2 class="card-title">7. Realize All Gates Using NAND & NOR Gates</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent7')">Toggle Content</button>
+                <div id="theoryContent7" class="theoretical-content">
+                    <h3>Overview of Realizing Gates Using NAND & NOR Gates</h3>
+                    <p>In digital logic design, any basic gate (AND, OR, NOT, etc.) can be realized using only NAND and NOR gates. These gates are called universal gates because they can be used to construct any other logic gate.</p>
+            
+                    <h3>Key Concepts</h3>
+                    <ul>
+                        <li><strong>NAND Gate:</strong> The NAND gate is a combination of AND and NOT gates. Its output is the negation of the AND operation.</li>
+                        <li><strong>NOR Gate:</strong> The NOR gate is a combination of OR and NOT gates. Its output is the negation of the OR operation.</li>
+                        <li><strong>Realization of Gates:</strong> 
+                            <ul>
+                                <li>AND Gate: Realized by using a NAND gate followed by a NOT gate.</li>
+                                <li>OR Gate: Realized by using a NOR gate followed by a NOT gate.</li>
+                                <li>NOT Gate: Can be realized using a NAND gate with both inputs tied together.</li>
+                                <li>AND, OR, and other gates can be derived similarly using combinations of NAND and NOR gates.</li>
+                            </ul>
+                        </li>
+                    </ul>
+            
+                    <h3>Viva Questions</h3>
+                    <h4>1. What are the universal gates?</h4>
+                    <p><strong>Answer:</strong> NAND and NOR gates are universal gates because any other logic gate can be realized using only these gates.</p>
+            
+                    <h4>2. How do you realize an AND gate using NAND gates?</h4>
+                    <p><strong>Answer:</strong> An AND gate can be realized by using a NAND gate followed by a NOT gate (which can be implemented using another NAND gate with both inputs tied together).</p>
+            
+                    <div id="videoBlock7" class="video-section">
+                        <h3>Realizing All Gates Using NAND & NOR</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/nyxTdL_4Q-Y" title="YouTube video player"></iframe>
+                    </div>
+            
+                   </div>
+            </li>
+            
+            <li class="card">
+                <h2 class="card-title">8. Realize Half Adder, Full Adder, Half Subtractor, Full Subtractor</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent8')">Toggle Content</button>
+                <div id="theoryContent8" class="theoretical-content">
+                    <h3>Overview of Adders and Subtractors</h3>
+                    <p>Half adder and full adder are basic circuits used for adding binary numbers. A half adder adds two bits and provides the sum and carry. A full adder adds three bits (two inputs and a carry-in). Subtractors perform binary subtraction using similar logic gates.</p>
+            
+                    <h3>Key Concepts</h3>
+                    <ul>
+                        <li><strong>Half Adder:</strong> Adds two single-bit numbers and outputs a sum and carry.</li>
+                        <li><strong>Full Adder:</strong> Adds three bits (two inputs and carry-in) and outputs a sum and carry-out.</li>
+                        <li><strong>Half Subtractor:</strong> Subtracts one bit from another and outputs the difference and borrow.</li>
+                        <li><strong>Full Subtractor:</strong> Subtracts one bit from another with a borrow-in and outputs the difference and borrow-out.</li>
+                    </ul>
+            
+                    <h3>Viva Questions</h3>
+                    <h4>1. What is the difference between half adder and full adder?</h4>
+                    <p><strong>Answer:</strong> A half adder adds two single-bit numbers, while a full adder adds three bits (two inputs and a carry-in).</p>
+            
+                    <h4>2. How is a full adder implemented?</h4>
+                    <p><strong>Answer:</strong> A full adder can be implemented using two half adders and an OR gate for the carry-out.</p>
+            
+                    <div id="videoBlock8" class="video-section">
+                        <h3>Realization of Adders and Subtractors</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/nyxTdL_4Q-Y" title="YouTube video player"></iframe>
+                    </div>
+            
+                 
+                </div>
+            </li>
+            
+
+            <li class="card">
+                <h2 class="card-title">9. Realize Master-Slave JK Flip-Flop, Using NAND/NOR Gates</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent9')">Toggle Content</button>
+                <div id="theoryContent9" class="theoretical-content">
+                    <h3>Overview of Master-Slave JK Flip-Flop</h3>
+                    <p>A JK flip-flop is a type of bistable multivibrator, which is used to store one bit of data. The master-slave configuration uses two flip-flops to create edge-triggered behavior, ensuring that the output changes only on the clock pulse edge.</p>
+            
+                    <h3>Key Concepts</h3>
+                    <ul>
+                        <li><strong>Master-Slave Configuration:</strong> A configuration where the master flip-flop is triggered by the clock pulse, and the slave flip-flop updates on the next clock edge.</li>
+                        <li><strong>JK Flip-Flop:</strong> A flip-flop with inputs J, K, and a clock that allows toggling, setting, or resetting based on the inputs.</li>
+                    </ul>
+            
+                    <h3>Viva Questions</h3>
+                    <h4>1. What is the advantage of using a master-slave flip-flop?</h4>
+                    <p><strong>Answer:</strong> The master-slave flip-flop ensures that the output only changes on the clock edge, preventing changes during the clock high state.</p>
+            
+                    <h4>2. How is a JK flip-flop realized using NAND gates?</h4>
+                    <p><strong>Answer:</strong> A JK flip-flop can be realized using two NAND gates connected in a master-slave configuration.</p>
+            
+                    <div id="videoBlock9" class="video-section">
+                        <h3>Realizing JK Flip-Flop Using NAND Gates</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/nyxTdL_4Q-Y" title="YouTube video player"></iframe>
+                    </div>
+            
+       
+                </div>
+            </li>
+            
+
+            <li class="card">
+                <h2 class="card-title">10. Realize Universal Shift Register</h2>
+                <button class="reveal-button" onclick="toggleContent('theoryContent10')">Toggle Content</button>
+                <div id="theoryContent10" class="theoretical-content">
+                    <h3>Overview of Universal Shift Register</h3>
+                    <p>A Universal Shift Register is a sequential logic circuit that can shift data in both directions (left and right), load data in parallel, and store data. It is built using a series of flip-flops controlled by a clock signal.</p>
+            
+                    <h3>Key Concepts</h3>
+                    <ul>
+                        <li><strong>Shift Left/Right:</strong> Moving the data in the register towards the left or right, inserting 0s or shifting out bits.</li>
+                        <li><strong>Parallel Load:</strong> Loading multiple bits of data into the shift register simultaneously.</li>
+                        <li><strong>Clock Control:</strong> The clock signal synchronizes the shifting and loading of data in the register.</li>
+                    </ul>
+            
+                    <h3>Viva Questions</h3>
+                    <h4>1. What is the purpose of a Universal Shift Register?</h4>
+                    <p><strong>Answer:</strong> A Universal Shift Register can shift data in both directions, load data in parallel, and store data, making it versatile for various applications.</p>
+            
+                    <h4>2. How does a shift register differ from a normal register?</h4>
+                    <p><strong>Answer:</strong> A shift register can shift data between its bits in addition to storing data, whereas a normal register only stores data without shifting.</p>
+            
+                    <div id="videoBlock10" class="video-section">
+                        <h3>Realizing Universal Shift Register</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/nyxTdL_4Q-Y" title="YouTube video player"></iframe>
+                    </div>
+            
+           
+                </div>
+            </li>
+            
+
+
+
+        </ul>
+    </section>
+
+    <script>
+        function toggleContent(contentId) {
+            var content = document.getElementById(contentId);
+
+            // Check if content is hidden (display is "none" or initial empty value)
+            if (content.style.display === "none" || content.style.display === "") {
+                content.style.display = "block"; // Show content
+            } else {
+                content.style.display = "none"; // Hide content
+            }
+        }
+    </script>
+</body>
+
+</html>
